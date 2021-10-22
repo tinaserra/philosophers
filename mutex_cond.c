@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 18:01:09 by vserra            #+#    #+#             */
-/*   Updated: 2021/10/22 19:22:22 by vserra           ###   ########.fr       */
+/*   Updated: 2021/10/22 19:24:27 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*hello1(void *data)
 {
 	char str[] = "hello world!";
 	int i = 0;
-	pthread_cond_wait(&cond, &mutex);
+	pthread_cond_wait(&cond, &mutex); // le thread attend la condition pour se lancer
 	while (i <12)
 	{
 		fprintf(stderr, "%c", str[i]);
@@ -49,7 +49,7 @@ void	*hello2(void *data)
 	fprintf(stderr, "\n");
 
 	fprintf(stderr, "end2\n");
-	pthread_cond_signal(&cond);
+	pthread_cond_signal(&cond); // on envoi la condition au thread 1
 	pthread_exit(NULL);
 }
 

@@ -83,5 +83,13 @@ le programme s'arrete donc au ```pthread_join(t1, NULL);``` juqu'a ce que les th
 
 ## questce qu'un mutex ?
 
+si deux thread utilisent la meme variable en meme temps ca peut faire des problemes. pour que les thread utilisent la variable chacun leur tour on peut les bloquer temporairement grace aux **mutex**.
+
 un mutex peut prendre deux etats : un etat bloque et un etat pas bloque.
 
+### les fonctions
+
+```c++
+pthread_mutex_lock(&mutex);
+pthread_mutex_unlock(&mutex);
+```
