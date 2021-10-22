@@ -1,6 +1,13 @@
 # philosophers
 I’ve never thought philosophy would be so deadly
 
+## Le sujet
+
+### Fonctions autorisées
+
+```memset```, ```printf```, ```malloc```, ```free```, ```write``` </br>
+```usleep``` </br>```gettimeofday``` </br>```pthread_create``` </br>```pthread_detach``` </br>```pthread_join``` </br>```pthread_mutex_init``` </br>```pthread_mutex_destroy``` </br>```pthread_mutex_lock``` </br>```pthread_mutex_unlock```
+
 ## questce qu'un thread ?
 
 les thread sont des programmes qui vont demarrer au sein d'un premier et qui vont se separer pour accomplir des taches / effectuer leurs instructions simultanement / en meme temps, sans forcement etre lies sauf en terme de memoire. c'est de la programmation dite asynchrone.
@@ -19,3 +26,19 @@ pthread_t t2;
 ```
 ### creer un thread
 
+```c++
+void  *funct1(void *arg)
+{
+  int i;
+  i = 0;
+  while(i < 0)
+  {
+    printf("\033[91mthread 1: %d\033[0m\n", i);
+    i++;
+  }
+  pthread_exit(NULL);
+}
+```
+```
+pthread_create(&t1, NULL, funct1, NULL);
+```
