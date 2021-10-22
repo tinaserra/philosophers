@@ -20,25 +20,68 @@ les thread sont des programmes qui vont demarrer au sein d'un premier et qui von
 
 ### variable
 
-```
-pthread_t t1; #type pthread_t
+```c++
+pthread_t t1; //type pthread_t
 pthread_t t2;
 ```
 ### creer un thread
 
+la fonction ```pthread_create``` permet de creer des thread. 
+
+```c++
+pthread_create(&t1, NULL, funct1, NULL);
+```
+on lui envoi en premier parametre l'adresse du thread, en troisieme une fonction et en dernier l'argument de la fonction.
+
+#### exemple
+
 ```c++
 void  *funct1(void *arg)
 {
-  int i;
-  i = 0;
-  while(i < 0)
-  {
-    printf("\033[91mthread 1: %d\033[0m\n", i);
-    i++;
-  }
-  pthread_exit(NULL);
+	int i;
+	i = 0;
+	while(i < 10)
+	{
+		printf("\033[91mthread 1: %d\033[0m\n", i);
+		i++;
+	}
+	pthread_exit(NULL);
+}
+
+int		main(void)
+{
+	pthread_t	t1;
+
+	pthread_create(&t1, NULL, funct1, NULL);
+	return (0);
 }
 ```
+
+### attendre un thread
+
+le probleme c'est que le programme main n'affiche rien car il est arrive au return (0) avant que les thread n'ai eu le temps de s'executer.
+
+pthread_join() permet d'attendre la fin des thread.
+
+```c++
+int		main(void)
+{
+	pthread_t	t1;
+	pthread_t	t2;
+
+	pthread_create(&t1, NULL, funct1, NULL);
+	pthread_create(&t2, NULL, funct2, NULL);
+
+	pthread_join(t1, NULL);
+	pthread_join(t2, NULL);
+
+	return (0);
+}
 ```
-pthread_create(&t1, NULL, funct1, NULL);
-```
+
+le programme s'arrete donc au ```pthread_join(t1, NULL);``` juqu'a ce que les thread soit fini puis il continue.
+
+## questce qu'un mutex ?
+
+un mutex peut prendre deux etats : un etat bloque et un etat pas bloque.
+
