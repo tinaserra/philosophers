@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/10/25 12:19:59 by vserra           ###   ########.fr        #
+#    Updated: 2021/10/25 14:29:51 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,10 @@ INC_DIR = inc
 OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 DPD = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.d))
 
-# -C faire make comme si on etait dans le dossier
-# -j multisreder / ameliore la vitesse de compliation
-# Pas de regle opti car makefile mlx pas compatible
+# -j = jobs : multithreader / separe les taches de compliation
+# opti:
+# 	make -j all
+
 all:
 	@$(MAKE) -j $(NAME)
 
@@ -60,5 +61,7 @@ re: fclean all
 
 .PHONY: all, clean, fclean, re
 
-# Utilise les .d (et ignore s'ils n'existe pas)
+# utilise les .d (et ignore s'ils n'existe pas)
 -include $(DPD)
+
+# le secret c'est de commenter son Makefile <3
