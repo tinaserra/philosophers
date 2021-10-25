@@ -194,7 +194,8 @@ int		main(void)
 	return (0);
 }
 ```
-voir [mutex2.c](https://github.com/tinaserra/philosophers/blob/main/mutex2.c) & [mutex.c](https://github.com/tinaserra/philosophers/blob/main/mutex.c)
+voir [mutex2.c](https://github.com/tinaserra/philosophers/blob/main/mutex2.c) & [mutex.c](https://github.com/tinaserra/philosophers/blob/main/mutex.c)</br>
+
 **resultat :**
 ```sh
 $ gcc mutex.c -lpthread && a.out
