@@ -57,6 +57,8 @@ int		main(void)
 }
 ```
 
+voir [thread.c](https://github.com/tinaserra/philosophers/blob/main/thread.c) pour un exemple avec des chaines de caracteres
+
 ### attendre un thread
 
 le probleme c'est que le programme main n'affiche rien car il est arrive au return (0) avant que les thread n'ai eu le temps de s'executer.
@@ -192,7 +194,7 @@ int		main(void)
 	return (0);
 }
 ```
-
+voir [mutex2.c](https://github.com/tinaserra/philosophers/blob/main/mutex2.c) & [mutex.c](https://github.com/tinaserra/philosophers/blob/main/mutex.c)
 **resultat :**
 ```sh
 $ gcc mutex.c -lpthread && a.out

@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/22 15:51:51 by vserra            #+#    #+#             */
-/*   Updated: 2021/10/22 18:00:35 by vserra           ###   ########.fr       */
+/*   Updated: 2021/10/25 17:25:29 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*funct1(void *arg)
 	int i;
 	i = 0;
 
-	while(i < 10)
+	while(i < 7)
 	{
 		fprintf(stderr, "\033[91mthread 1: %s\033[0m\n", (char*)arg);
 		i++;
