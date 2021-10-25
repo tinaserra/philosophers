@@ -194,7 +194,7 @@ int		main(void)
 ```
 
 **resultat :**
-```c++
+```sh
 $ gcc mutex.c -lpthread && a.out
 
 Ciao ciao !
@@ -207,7 +207,9 @@ tu peux t'amuser a commenter les ```pthread_mutex_lock(&philo->mutex);```
 et ```pthread_mutex_unlock(&philo->mutex);```
 
 **resultat :**
-```
+```sh
+$ gcc mutex.c -lpthread && a.out
+
 BCyiea ob ycei
 end2
 ao !
