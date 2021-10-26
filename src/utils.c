@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:26:30 by vserra            #+#    #+#             */
-/*   Updated: 2021/10/26 16:12:01 by vserra           ###   ########.fr       */
+/*   Updated: 2021/10/26 18:53:33 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,20 @@ int	ft_putstr_fd(char *s, int fd)
 		return (ft_strlen(s));
 	}
 	return (0);
+}
+
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*temp;
+
+	i = 0;
+	temp = (char *)s;
+	while (i < n)
+	{
+		temp[i] = 0;
+		i++;
+	}
 }
 
 int	ft_atoi(const char *str)

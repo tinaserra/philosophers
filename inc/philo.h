@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:13:46 by vserra            #+#    #+#             */
-/*   Updated: 2021/10/26 15:48:46 by vserra           ###   ########.fr       */
+/*   Updated: 2021/10/26 20:28:54 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 
 typedef enum		e_error{
 	ARGS,
-	FILE_NAME,
+	ARG1,
+	ARG2,
+	ARG3,
+	ARG4,
+	ARG5,
 
 	NUMBER
 }					t_error;
@@ -37,17 +41,24 @@ typedef enum		e_error{
 ** STRUCTURES --------------------------------------------------------------- **
 */
 
+typedef struct	s_threads
+{
+	int			num;
+}				t_threads;
+
 typedef struct	s_philo
 {
-	pthread_t			t2;
-	pthread_t			t1;
-	pthread_mutex_t		mutex;
+	// pthread_t			t2;
+	// pthread_t			t1;
+	// pthread_mutex_t		mutex;
 
-	int					number_of_philosophers;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					number_of_times_each_philosopher_must_eat;
+	int			number_of_philosophers;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			number_of_times_each_philosopher_must_eat;
+	
+	t_threads	*ph;
 }				t_philo;
 
 
@@ -59,9 +70,10 @@ typedef struct	s_philo
 int	print_error(t_philo *bb, int error);
 
 /* utils.c */
-int	ft_strlen(char *s);
-int	ft_putstr_fd(char *s, int fd);
-int	ft_atoi(const char *str);
+int		ft_strlen(char *s);
+int		ft_putstr_fd(char *s, int fd);
+int		ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
 
 /* debug.c */
 void	debug_print_args(t_philo *bb);
