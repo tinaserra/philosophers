@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/10/26 15:33:43 by vserra           ###   ########.fr        #
+#    Updated: 2021/10/26 20:35:16 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,11 +29,11 @@ OBJ = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 DPD = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.d))
 
 # -j = jobs : multithreader / separe les taches de compliation
-# opti:
-# 	make -j all
+opti:
+	make -j all
 
 all:
-	@$(MAKE) -j $(NAME)
+	$(NAME)
 
 # permet de pouvoir comparer la derniere modification de la dependance 
 # par rapport a la regle
