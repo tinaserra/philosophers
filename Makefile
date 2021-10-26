@@ -6,11 +6,14 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/10/25 14:29:51 by vserra           ###   ########.fr        #
+#    Updated: 2021/10/26 15:33:43 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	main.c
+SRC =	main.c \
+		debug.c \
+		error.c \
+		utils.c
 
 NAME = philo
 

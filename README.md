@@ -33,6 +33,12 @@ pthread_create(&t1, NULL, funct1, NULL);
 ```
 on lui envoi en premier parametre l'adresse du thread, en troisieme une fonction et en dernier l'argument de la fonction.
 
+### pour compiler
+
+```sh
+gcc mutex2.c -lpthread && ./a.out
+```
+
 #### exemple
 
 ```c++
@@ -86,6 +92,12 @@ le programme s'arrete donc au ```pthread_join(t1, NULL);``` juqu'a ce que les th
 ## qu'est-ce qu'un mutex ?
 
 si deux thread utilisent la meme variable en meme temps ca peut faire des problemes. pour que les thread utilisent la variable chacun leur tour on peut les bloquer temporairement grace aux **mutex**.
+
+### variable
+
+```c++
+pthread_mutex_t	mutex;
+```
 
 ### initialiser
 
@@ -229,3 +241,5 @@ je pense que c'est du au fait que ```printf``` ecrit la string dans un buffer av
 #### pour 42
 pour le projet philosopher a 42, la plupart des gens utilisent ```write```.
 egalement, la fonction ```pthread_exit``` n'est pas autorisé pour le projet de 42 tu peux mettre tout simplement un ```return ;```
+
+
