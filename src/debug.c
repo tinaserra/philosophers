@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:34:53 by vserra            #+#    #+#             */
-/*   Updated: 2021/10/26 16:10:41 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/02 14:06:03 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 #ifdef DEBUG
 
-void	debug_print_args(t_philo *bb)
+void	debug_print_args(t_env *bb)
 {
 	printf("\n\n********* DEBUG PRINT ARGS *********\n\n");
 	printf("nb philo = %d\n", bb->number_of_philosophers);
@@ -29,7 +29,7 @@ void	debug_print_args(t_philo *bb)
 
 #else
 
-void	debug_print_args(t_philo *bb)
+void	debug_print_args(t_env *bb)
 {
 	(void)bb;
 	return ;
