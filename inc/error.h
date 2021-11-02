@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 20:32:23 by vserra            #+#    #+#             */
-/*   Updated: 2021/10/26 20:33:02 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/02 14:48:22 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static char g_str_error[NUMBER][256] =
 	[ARG3] = "Error\nInvalid [time_to_eat]\n",
 	[ARG4] = "Error\nInvalid [time_to_sleep]\n",
 	[ARG5] = "Error\nInvalid [number_of_times_each_philosopher_must_eat]\n",
+	[MALLOC] = "Error\nMemory allocation failed\n",
+	[INIT_MUTEX] = "Error\nInit mutex\n",
 
 };
 

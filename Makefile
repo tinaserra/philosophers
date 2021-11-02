@@ -6,11 +6,12 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/10/26 20:35:16 by vserra           ###   ########.fr        #
+#    Updated: 2021/11/02 17:21:37 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	main.c \
+		init%struct.c \
 		debug.c \
 		error.c \
 		utils.c
