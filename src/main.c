@@ -6,20 +6,20 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/02 17:04:40 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/02 17:27:08 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_usleep(long time_in_ms)
-{
-	long	start_time;
+// void	ft_usleep(long time_in_ms)
+// {
+// 	long	start_time;
 
-	start_time = get_time();
-	while ((get_time() - start_time) < time_in_ms)
-		usleep(time_in_ms / 10);
-}
+// 	start_time = get_time();
+// 	while ((get_time() - start_time) < time_in_ms)
+// 		usleep(time_in_ms / 10);
+// }
 
 void	destroy(t_env *bb)
 {

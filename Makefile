@@ -6,12 +6,12 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/11/02 17:21:37 by vserra           ###   ########.fr        #
+#    Updated: 2021/11/02 17:28:44 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 SRC =	main.c \
-		init%struct.c \
+		init_struct.c \
 		debug.c \
 		error.c \
 		utils.c
@@ -34,7 +34,7 @@ opti:
 	make -j all
 
 all:
-	$(NAME)
+	$(MAKE) $(NAME)
 
 # permet de pouvoir comparer la derniere modification de la dependance 
 # par rapport a la regle
