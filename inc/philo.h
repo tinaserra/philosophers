@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:13:46 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/02 15:13:05 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/02 18:00:25 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ typedef struct	s_philo
 {
 	int			num;
 	pthread_t	thread;
+
+	struct s_env	*bb;
 }				t_philo;
 
 typedef struct	s_env
@@ -90,6 +92,8 @@ int	init_start(t_env *bb, int ac, char **av);
 
 /* threads.c */
 int	create_phisolophers(t_env *bb);
+
+void	*justdoit(void *data);
 
 /* debug.c */
 void	debug_print_args(t_env *bb);
