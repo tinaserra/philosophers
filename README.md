@@ -6,7 +6,15 @@ I’ve never thought philosophy would be so deadly
 ### Fonctions autorisées
 
 ```memset```, ```printf```, ```malloc```, ```free```, ```write``` </br>
-```usleep``` </br>```gettimeofday``` </br>```pthread_create``` </br>```pthread_detach``` </br>```pthread_join``` </br>```pthread_mutex_init``` </br>```pthread_mutex_destroy``` </br>```pthread_mutex_lock``` </br>```pthread_mutex_unlock```
+```usleep``` </br>
+```gettimeofday``` </br>
+```pthread_create``` cree un thread et prend en parametre une fonction</br>
+```pthread_detach``` -> [man](http://manpages.ubuntu.com/manpages/bionic/fr/man3/pthread_detach.3.html) Ici on utilise pour le thread **death**</br>
+```pthread_join``` premet d'attendre un thread</br>
+```pthread_mutex_init``` </br>
+```pthread_mutex_destroy``` </br>
+```pthread_mutex_lock``` bloque le mutex prendant qu'on l'utilise</br>
+```pthread_mutex_unlock```
 
 ## qu'est-ce qu'un thread ?
 
@@ -145,14 +153,14 @@ typedef struct	s_philo
 	pthread_t		t1;
 	pthread_t		t2;
 	pthread_mutex_t	mutex;
-}				t_philo;
+}				t_env;
 
 void	*ciao(void *data)
 {
-	t_philo *philo;
+	t_env *philo;
 	char *s1;
 
-	philo = (t_philo *)data;
+	philo = (t_env *)data;
 	int i = 0;
 	s1 = "Ciao ciao !";
 	pthread_mutex_lock(&philo->mutex); // bloquer le mutex pendant que tue execute
@@ -170,10 +178,10 @@ void	*ciao(void *data)
 
 void	*bye(void *data)
 {
-	t_philo *philo;
+	t_env *philo;
 	char *s2;
 
-	philo = (t_philo *)data;
+	philo = (t_env *)data;
 	int i = 0;
 	s2 = "Bye bye";
 	pthread_mutex_lock(&philo->mutex);
@@ -191,7 +199,7 @@ void	*bye(void *data)
 
 int		main(void)
 {
-	t_philo	philo;
+	t_env	philo;
 
 	/* obligatoire de init le mutex */
 	pthread_mutex_init(&philo.mutex, NULL);
