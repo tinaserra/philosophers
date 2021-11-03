@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:26:31 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 13:05:17 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/03 17:50:15 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	init_mutex(t_env *bb)
 	if (pthread_mutex_init(&(bb->lock_m), NULL))
 		return (-1);
 	if (pthread_mutex_init(&(bb->death_m), NULL))
+		return (-1);
+	if (pthread_mutex_init(&(bb->debug), NULL))
 		return (-1);
 	return (0);
 }
@@ -37,6 +39,12 @@ static int	init_struct(t_env *bb)
 	while (i < bb->number_of_philosophers)
 	{
 		bb->ph[i].num = i;
+		bb->ph[i].bb = bb;
+		// s->p[i].is_eating = 0;
+		// s->p[i].count_eat = 0;
+		// s->p[i].last_eat_time = get_time();
+		// s->p[i].must_eat = 0;
+		printf("Le philo %d est initialisé\n", bb->ph[i].num);
 		if (pthread_mutex_init(&(bb->forks[i]), NULL))
 			return (-1);
 		i++;

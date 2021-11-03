@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:13:46 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 14:31:45 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/03 17:39:23 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,6 @@ typedef struct	s_philo
 	int			num;
 	pthread_t	thread;
 
-	// size_t			last_eat_time;
-	// size_t			count_eat;
-
-	// char			must_eat;
-	// char			is_eating;
-
-
 	struct s_env	*bb;
 }				t_philo;
 
@@ -89,6 +82,8 @@ typedef struct	s_env
 
 	int				someone_died;
 	long			start_time;
+
+	pthread_mutex_t	debug;
 
 	pthread_mutex_t	death_m;
 	pthread_t		death;
@@ -122,7 +117,7 @@ unsigned int	get_time(void);
 int	init_start(t_env *bb, int ac, char **av);
 
 /* threads.c */
-int	create_phisolophers(t_env *bb);
+int	create_philosophers(t_env *bb);
 
 /* states.c */
 void	*justdoit(void *data);

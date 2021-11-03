@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/26 15:26:30 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 14:31:34 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/03 14:36:32 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_strlen(char *s)
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, fd);
+	write(fd, &c, STDOUT_FILENO);
 }
 
 void	ft_putstr_fd(char *s, int fd)
