@@ -1,17 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.c                                            :+:      :+:    :+:   */
+/*   string.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 18:33:50 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 13:02:21 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/03 14:26:59 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include "message.h"
 #include "error.h"
+
+int	print_message(t_philo *ph, int msg)
+{
+	pthread_mutex_lock(&(ph->bb->write_m));
+	if (ph->bb->someone_died)
+	{
+		pthread_mutex_unlock(&(ph->bb->write_m));
+		return (0);
+	}
+	ft_putnbr_fd(get_time() - ph->bb->start_time, 1);
+	ft_putchar_fd(' ', 1);
+	ft_putnbr_fd((ph->num + 1), 1);
+	// ft_putstr_fd(get_msg_type(type), 1);
+	ft_putstr_fd(g_str_msg[msg], STDOUT_FILENO);
+	pthread_mutex_unlock(&(ph->bb->write_m));
+	return (0);
+}
 
 int	print_error(int error)
 {

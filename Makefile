@@ -6,7 +6,7 @@
 #    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/11/02 18:00:38 by vserra           ###   ########.fr        #
+#    Updated: 2021/11/03 14:20:28 by vserra           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ SRC =	main.c \
 		init_struct.c \
 		states.c \
 		debug.c \
-		error.c \
+		string.c \
+		threads.c \
 		utils.c
 
 NAME = philo
