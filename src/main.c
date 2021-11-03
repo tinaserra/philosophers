@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/02 17:27:08 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/03 13:02:37 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(int ac, char **av)
 	t_env	bb;
 
 	if (ac < 5 || ac > 6)
-		return (print_error(&bb, ARGS));
+		return (print_error(ARGS));
 	if (init_start(&bb, ac, av) == -1)
 		destroy(&bb);
 

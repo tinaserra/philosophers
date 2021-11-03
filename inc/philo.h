@@ -6,7 +6,7 @@
 /*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:13:46 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/02 18:00:25 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/03 13:02:30 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ typedef struct	s_env
 */
 
 /* error.c */
-int	print_error(t_env *bb, int error);
+int	print_error(int error);
 
 /* utils.c */
 int		ft_strlen(char *s);
@@ -93,6 +93,7 @@ int	init_start(t_env *bb, int ac, char **av);
 /* threads.c */
 int	create_phisolophers(t_env *bb);
 
+/* states.c */
 void	*justdoit(void *data);
 
 /* debug.c */
