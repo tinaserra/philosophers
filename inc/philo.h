@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:13:46 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 17:39:23 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/04 09:56:49 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef enum		e_error{
 	ARG5,
 	MALLOC,
 	INIT_MUTEX,
+	GETTIMEOFDAY,
 
 	NUMBER
 }					t_error;
@@ -111,7 +112,8 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
 void	ft_putnbr_fd(int n, int fd);
-unsigned int	get_time(void);
+unsigned int	convert_time(void);
+void	ft_usleep(long time_in_ms);
 
 /* init_struct */
 int	init_start(t_env *bb, int ac, char **av);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:26:31 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 17:50:15 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/04 09:54:00 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	init_struct(t_env *bb)
 		bb->ph[i].bb = bb;
 		// s->p[i].is_eating = 0;
 		// s->p[i].count_eat = 0;
-		// s->p[i].last_eat_time = get_time();
+		// s->p[i].last_eat_time = convert_time();
 		// s->p[i].must_eat = 0;
 		printf("Le philo %d est initialisé\n", bb->ph[i].num);
 		if (pthread_mutex_init(&(bb->forks[i]), NULL))

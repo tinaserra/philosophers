@@ -3,30 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 15:43:21 by vserra           ###   ########.fr       */
+/*   Updated: 2021/11/04 10:01:51 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-unsigned int	get_time(void)
-{
-	static struct timeval	tv;
+/*
+** int gettimeofday(struct timeval *tv, struct timezone *tz);
+**
+** L'utilisation de la structure timezone est obsolète
+** le fuseau horraire n'est pas gere sous linux. 
+** l'argument timezone doit etre NULL.
+*/
 
-	if (gettimeofday(&tv, NULL))
-		return (0);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+unsigned int	convert_time(void)
+{
+	static struct timeval	current_time;
+
+	if (gettimeofday(&current_time, NULL) == -1)
+		return (-1);
+	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
+
+/*
+** la vraie fonction usleep attend au minimum le temps qu'on lui indique
+** donc n'est pas precise
+*/
 
 void	ft_usleep(long time_in_ms)
 {
 	long	start_time;
 
-	start_time = get_time();
-	while ((get_time() - start_time) < time_in_ms)
+	start_time = convert_time();
+	while ((convert_time() - start_time) < time_in_ms)
 		usleep(time_in_ms / 10);
 }
 
