@@ -5,16 +5,16 @@ I’ve never thought philosophy would be so deadly
 
 ### Fonctions autorisées
 
-```memset```, ```printf```, ```malloc```, ```free```, ```write``` </br>
-```usleep``` </br>
-```gettimeofday``` </br>
-```pthread_create``` cree un thread et prend en parametre une fonction</br>
-```pthread_detach``` -> [man](http://manpages.ubuntu.com/manpages/bionic/fr/man3/pthread_detach.3.html) Ici on utilise pour le thread **death**</br>
-```pthread_join``` premet d'attendre un thread</br>
-```pthread_mutex_init``` </br>
-```pthread_mutex_destroy``` </br>
-```pthread_mutex_lock``` bloque le mutex prendant qu'on l'utilise</br>
-```pthread_mutex_unlock```
+* ```memset```, ```printf```, ```malloc```, ```free```, ```write```
+* ```usleep```
+* ```gettimeofday``` permet de lire l'heure actuelle. la fonction prend en parametre l'argument ```tv```, une structure timeval (décrite dans <sys/time.h>), et ```tz``` une structure timezone. L'utilisation de la structure timezone est obsolète, le fuseau horraire n'est pas gere sous linux. l'argument ```tz``` doit etre ```NULL```.
+* ```pthread_create``` cree un thread et prend en parametre une fonction
+* ```pthread_detach``` -> [man](http://manpages.ubuntu.com/manpages/bionic/fr/man3/pthread_detach.3.html) Ici on utilise pour le thread **death**
+* ```pthread_join``` premet d'attendre un thread
+* ```pthread_mutex_init```
+* ```pthread_mutex_destroy```
+* ```pthread_mutex_lock``` bloque / verouille le mutex prendant qu'on l'utilise dans un tread x et empecher les threads y, z, ... de l'utiliser simultanément.
+* ```pthread_mutex_unlock```
 
 ## qu'est-ce qu'un thread ?
 
