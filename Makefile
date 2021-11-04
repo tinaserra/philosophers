@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vserra <vserra@student.42.fr>              +#+  +:+       +#+         #
+#    By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/11/03 17:23:00 by vserra           ###   ########.fr        #
+#    Updated: 2021/11/04 09:09:38 by tinaserra        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,10 +33,10 @@ DPD = $(addprefix $(OBJ_DIR)/,$(SRC:.c=.d))
 
 # -j = jobs : multithreader / separe les taches de compliation
 opti:
-	make -j all
+	@make -j all
 
 all:
-	$(MAKE) $(NAME)
+	@$(MAKE) $(NAME)
 
 # permet de pouvoir comparer la derniere modification de la dependance 
 # par rapport a la regle
