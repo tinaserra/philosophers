@@ -89,9 +89,9 @@ typedef struct	s_env
 	pthread_t		death;
 
 	pthread_mutex_t	debug;
-	pthread_mutex_t	death_m;
-	pthread_mutex_t	write_m;
-	pthread_mutex_t	lock_m;
+	pthread_mutex_t	death;
+	pthread_mutex_t	print;
+	pthread_mutex_t	mutex;
 
 	pthread_mutex_t	*forks;
 	t_philo			*ph;

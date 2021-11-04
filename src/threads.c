@@ -12,13 +12,53 @@
 
 #include "philo.h"
 
+void	check(t_env *bb, int *i)
+{
+	pthread_mutex_lock(&bb->mutex);
+	if (!bb->someone_died && !bb->ph[*i].eating && !bb->ph[*i].must_eat
+		&& (convert_time() - bb->ph[*i].last_time_eat) >= bb->time_to_die)
+	{
+		msg(&(bb->ph[*i]), DIED);
+		bb->someone_died = 1;
+		pthread_mutex_unlock(&bb->mutex);
+		pthread_mutex_unlock(&bb->death);
+		pthread_exit(0);
+	}
+	if (bb->someone_died)
+	{
+		pthread_mutex_unlock(&bb->mutex);
+		pthread_mutex_unlock(&bb->death);
+		pthread_exit(0);
+	}
+	(*i)++;
+	if (*i >= bb->number_of_philosophers && !bb->someone_died)
+		*i = 0;
+	pthread_mutex_unlock(&bb->mutex);
+}
+
+void	*death(void *data)
+{
+	t_env	*bb;
+	int i;
+
+	bb = (t_philo *)data;
+	pthread_mutex_lock(&bb->death);
+	i = 0;
+	while (i < bb->number_of_philosophers)
+	{
+		check(bb, &i);
+		usleep(100);
+	}
+	return (0);
+}
+
 int	create_philosophers(t_env *bb)
 {
 	int	i;
 
-	// if (pthread_create(&(bb->death), NULL, &death, bb))
-	// 	return (-1);
-	// pthread_detach(bb->death);
+	if (pthread_create(&(bb->death), NULL, &death, bb))
+		return (-1);
+	pthread_detach(bb->death);
 	i = 0;
 	while (i < bb->number_of_philosophers)
 	{
@@ -31,6 +71,9 @@ int	create_philosophers(t_env *bb)
 		pthread_join(bb->ph[i].thread, NULL);
 		i++;
 	}
+
+	/* print la synthese */
+	printf("to sum up !\n\n");
 	printf("\033[32m%-15s %-15s %-15s %-15s\n", "philo", "eat", "sleep", "think");
 	i = 0;
 	while (i < bb->number_of_philosophers)

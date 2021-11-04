@@ -14,11 +14,11 @@
 
 static int	init_mutex(t_env *bb)
 {
-	if (pthread_mutex_init(&(bb->write_m), NULL))
+	if (pthread_mutex_init(&(bb->print), NULL))
 		return (-1);
-	if (pthread_mutex_init(&(bb->lock_m), NULL))
+	if (pthread_mutex_init(&(bb->mutex), NULL))
 		return (-1);
-	if (pthread_mutex_init(&(bb->death_m), NULL))
+	if (pthread_mutex_init(&(bb->death), NULL))
 		return (-1);
 	if (pthread_mutex_init(&(bb->debug), NULL))
 		return (-1);

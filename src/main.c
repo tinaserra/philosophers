@@ -57,9 +57,9 @@ void	destroy(t_env *bb)
 		}
 		free(bb->forks);
 		free(bb->ph);
-		pthread_mutex_destroy(&(bb->death_m));
-		pthread_mutex_destroy(&(bb->lock_m));
-		pthread_mutex_destroy(&(bb->write_m));
+		pthread_mutex_destroy(&(bb->death));
+		pthread_mutex_destroy(&(bb->mutex));
+		pthread_mutex_destroy(&(bb->print));
 	}
 }
 
@@ -73,8 +73,8 @@ int	main(int ac, char **av)
 		destroy(&bb);
 	create_philosophers(&bb);
 
-	// pthread_mutex_lock(&(s.death_m));
-	// pthread_mutex_unlock(&(s.death_m));
+	// pthread_mutex_lock(&bb.death);
+	// pthread_mutex_unlock(&bb.death);
 	ft_usleep(5);
 	destroy(&bb);
 
