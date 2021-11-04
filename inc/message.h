@@ -18,7 +18,8 @@ static char g_str_msg[TOTAL][256] =
 	[EATING] = " is eating\n",
 	[SLEEPING] = " is sleeping\n",
 	[THINKING] = " is thinking\n",
-	[FORK] = " took a fork\n",
+	[FORK_L] = " took left fork\n",
+	[FORK_R] = " took right fork\n",
 	[DIED] = " died\n",
 	[ALL] = "All the philosophers had eat enough.\n"
 };

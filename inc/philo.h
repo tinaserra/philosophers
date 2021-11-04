@@ -32,7 +32,8 @@ typedef enum		e_msg{
 	EATING,
 	SLEEPING,
 	THINKING,
-	FORK,
+	FORK_L,
+	FORK_R,
 	DIED,
 	ALL,
 
@@ -64,6 +65,11 @@ typedef enum		e_error{
 typedef struct	s_philo
 {
 	int			num;
+	int			eating;
+	int			nb_time_eat;
+	int			nb_time_sleep;
+	int			nb_time_think;
+	unsigned int last_time_eat;
 	pthread_t	thread;
 
 	struct s_env	*bb;
@@ -71,10 +77,6 @@ typedef struct	s_philo
 
 typedef struct	s_env
 {
-	// pthread_t			t2;
-	// pthread_t			t1;
-	// pthread_mutex_t		mutex;
-
 	int				number_of_philosophers;
 	int				time_to_die;
 	int				time_to_eat;
@@ -84,11 +86,10 @@ typedef struct	s_env
 	int				someone_died;
 	long			start_time;
 
-	pthread_mutex_t	debug;
-
-	pthread_mutex_t	death_m;
 	pthread_t		death;
 
+	pthread_mutex_t	debug;
+	pthread_mutex_t	death_m;
 	pthread_mutex_t	write_m;
 	pthread_mutex_t	lock_m;
 
@@ -113,7 +114,7 @@ void	ft_bzero(void *s, size_t n);
 int		ft_atoi(const char *str);
 void	ft_putnbr_fd(int n, int fd);
 unsigned int	convert_time(void);
-void	ft_usleep(long time_in_ms);
+void	ft_usleep(unsigned int time_in_ms);
 
 /* init_struct */
 int	init_start(t_env *bb, int ac, char **av);

@@ -23,6 +23,7 @@ static char g_str_error[NUMBER][256] =
 	[ARG5] = "Error\nInvalid [number_of_times_each_philosopher_must_eat]\n",
 	[MALLOC] = "Error\nMemory allocation failed\n",
 	[INIT_MUTEX] = "Error\nInit mutex\n",
+	[GETTIMEOFDAY] = "Error\ngettimeofday() failed",
 
 };
 

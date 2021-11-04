@@ -25,7 +25,7 @@ unsigned int	convert_time(void)
 	static struct timeval	current_time;
 
 	if (gettimeofday(&current_time, NULL) == -1)
-		return (-1);
+		return (print_error(GETTIMEOFDAY));
 	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
@@ -34,9 +34,9 @@ unsigned int	convert_time(void)
 ** donc n'est pas precise
 */
 
-void	ft_usleep(long time_in_ms)
+void	ft_usleep(unsigned int time_in_ms)
 {
-	long	start_time;
+	unsigned int	start_time;
 
 	start_time = convert_time();
 	while ((convert_time() - start_time) < time_in_ms)

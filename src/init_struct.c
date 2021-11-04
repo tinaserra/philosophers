@@ -40,11 +40,12 @@ static int	init_struct(t_env *bb)
 	{
 		bb->ph[i].num = i;
 		bb->ph[i].bb = bb;
-		// s->p[i].is_eating = 0;
-		// s->p[i].count_eat = 0;
-		// s->p[i].last_eat_time = convert_time();
+		bb->ph[i].eating = 0;
+		bb->ph[i].nb_time_eat = 0;
+		bb->ph[i].nb_time_sleep = 0;
+		bb->ph[i].nb_time_think = 0;
+		bb->ph[i].last_time_eat = convert_time();
 		// s->p[i].must_eat = 0;
-		printf("Le philo %d est initialisé\n", bb->ph[i].num);
 		if (pthread_mutex_init(&(bb->forks[i]), NULL))
 			return (-1);
 		i++;

@@ -31,5 +31,12 @@ int	create_philosophers(t_env *bb)
 		pthread_join(bb->ph[i].thread, NULL);
 		i++;
 	}
+	printf("\033[32m%-15s %-15s %-15s %-15s\n", "philo", "eat", "sleep", "think");
+	i = 0;
+	while (i < bb->number_of_philosophers)
+	{
+		printf("%-15d %-15d %-15d %-15d\n", bb->ph[i].num, bb->ph[i].nb_time_eat, bb->ph[i].nb_time_sleep, bb->ph[i].nb_time_think);
+		i++;
+	}
 	return (0);
 }

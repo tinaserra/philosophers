@@ -26,13 +26,19 @@ int	ft_strlen(char *s)
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write(fd, &c, STDOUT_FILENO);
+	int ret;
+
+	ret = write(fd, &c, STDOUT_FILENO);
+	(void)ret;
 }
 
 void	ft_putstr_fd(char *s, int fd)
 {
+	int ret;
+
 	if (fd && s)
-		write(fd, s, ft_strlen(s));
+		ret = write(fd, s, ft_strlen(s));
+	(void)ret;
 }
 
 void	ft_bzero(void *s, size_t n)

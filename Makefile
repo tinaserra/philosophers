@@ -12,7 +12,7 @@
 
 SRC =	main.c \
 		init_struct.c \
-		states.c \
+		do_it.c \
 		debug.c \
 		string.c \
 		threads.c \
