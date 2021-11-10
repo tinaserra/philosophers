@@ -15,7 +15,7 @@
 void	check(t_env *bb, int *i)
 {
 	pthread_mutex_lock(&bb->mutex);
-	if (!bb->someone_died && !bb->ph[*i].eating && !bb->ph[*i].must_eat
+	if (!bb->someone_died && !bb->ph[*i].eating && !bb->ph[*i].enough_eat
 		&& (convert_time() - bb->ph[*i].last_time_eat) >= bb->time_to_die)
 	{
 		msg(&(bb->ph[*i]), DIED);

@@ -66,6 +66,7 @@ typedef struct	s_philo
 {
 	int			num;
 	int			eating;
+	int			enough_eat;
 	int			nb_time_eat;
 	int			nb_time_sleep;
 	int			nb_time_think;
@@ -84,6 +85,7 @@ typedef struct	s_env
 	int				number_of_times_each_philosopher_must_eat;
 
 	int				someone_died;
+	int				enough_eat;
 	long			start_time;
 
 	pthread_t		death;

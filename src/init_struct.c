@@ -45,7 +45,7 @@ static int	init_struct(t_env *bb)
 		bb->ph[i].nb_time_sleep = 0;
 		bb->ph[i].nb_time_think = 0;
 		bb->ph[i].last_time_eat = convert_time();
-		// s->p[i].must_eat = 0;
+		bb->ph[i].enough_eat = 0;
 		if (pthread_mutex_init(&(bb->forks[i]), NULL))
 			return (-1);
 		i++;
