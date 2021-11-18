@@ -16,7 +16,7 @@ void justenougheat(t_philo *ph, int fork_num)
 {
 	/* manger si must_eat le philo a assez manger*/
 	pthread_mutex_lock(&ph->bb->mutex);
-	if (ph->bb->number_of_times_each_philosopher_must_eat > 0 && ph->nb_time_eat >= ph->bb->number_of_times_each_philosopher_must_eat )
+	if (ph->bb->number_of_times_each_philosopher_must_eat > 0 && ph->nb_time_eat >= ph->bb->number_of_times_each_philosopher_must_eat)
 	{
 		pthread_mutex_lock(&ph->bb->debug);
 		fprintf(stderr, "\033[92mphilo %d : dois-je manger ?\n", ph->num);

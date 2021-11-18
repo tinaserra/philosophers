@@ -55,23 +55,20 @@ static int	init_struct(t_env *bb)
 
 static int	init_args(t_env *bb, int ac, char **av)
 {
-	bb->number_of_philosophers = ft_atoi(av[1]);
-	if (bb->number_of_philosophers == -1)
+	if (nbr_atoi(av[1], &bb->number_of_philosophers) == -1)
 		return (print_error(ARG1));
-	bb->time_to_die = ft_atoi(av[2]);
-	if (bb->time_to_die == -1)
+	if (time_atoi(av[2], &bb->time_to_die) == -1)
 		return (print_error(ARG2));
-	bb->time_to_eat = ft_atoi(av[3]);
-	if (bb->time_to_eat == -1)
+	if (time_atoi(av[3], &bb->time_to_eat) == -1)
 		return (print_error(ARG3));
-	bb->time_to_sleep = ft_atoi(av[4]);
-	if (bb->time_to_sleep == -1)
+	if (time_atoi(av[4], &bb->time_to_sleep) == -1)
 		return (print_error(ARG4));
 	if (ac == 6)
-		bb->number_of_times_each_philosopher_must_eat = ft_atoi(av[5]);
-	if (bb->number_of_times_each_philosopher_must_eat == -1)
-		return (print_error(ARG5));
+		if (nbr_atoi(av[5], &bb->number_of_times_each_philosopher_must_eat) == -1)
+			return (print_error(ARG5));
+	bb->start_time = convert_time();
 	debug_print_args(bb);
+	debug_print_struct(bb);
 	return (0);
 }
 

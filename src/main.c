@@ -20,7 +20,7 @@
 ** l'argument timezone doit etre NULL.
 */
 
-unsigned int	convert_time(void)
+int	convert_time(void)
 {
 	static struct timeval	current_time;
 
@@ -34,9 +34,9 @@ unsigned int	convert_time(void)
 ** donc n'est pas precise
 */
 
-void	ft_usleep(unsigned int time_in_ms)
+void	ft_usleep(useconds_t time_in_ms)
 {
-	unsigned int	start_time;
+	useconds_t	start_time;
 
 	start_time = convert_time();
 	while ((convert_time() - start_time) < time_in_ms)
@@ -70,7 +70,11 @@ int	main(int ac, char **av)
 	if (ac < 5 || ac > 6)
 		return (print_error(ARGS));
 	if (init_start(&bb, ac, av) == -1)
+	{
 		destroy(&bb);
+		debug_print_args(&bb);
+		return (-1);
+	}
 	create_philosophers(&bb);
 
 	// pthread_mutex_lock(&bb.death);
