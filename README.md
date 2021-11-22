@@ -44,7 +44,7 @@ on lui envoi en premier parametre l'adresse du thread, en troisieme une fonction
 ### pour compiler
 
 ```sh
-gcc mutex2.c -lpthread && ./a.out
+gcc tuto/mutex2.c -lpthread && ./a.out
 ```
 
 #### exemple
@@ -71,7 +71,7 @@ int		main(void)
 }
 ```
 
-voir [thread.c](https://github.com/tinaserra/philosophers/blob/main/thread.c) pour un exemple avec des chaines de caracteres
+voir [thread.c](https://github.com/tinaserra/philosophers/blob/main/tuto/thread.c) pour un exemple avec des chaines de caracteres
 
 ### attendre un thread
 
@@ -214,11 +214,11 @@ int		main(void)
 	return (0);
 }
 ```
-voir [mutex2.c](https://github.com/tinaserra/philosophers/blob/main/mutex2.c) & [mutex.c](https://github.com/tinaserra/philosophers/blob/main/mutex.c)</br>
+voir [mutex2.c](https://github.com/tinaserra/philosophers/blob/main/tuto/mutex2.c) & [mutex.c](https://github.com/tinaserra/philosophers/blob/main/tuto/mutex.c)</br>
 
 **resultat :**
 ```sh
-$ gcc mutex.c -lpthread && a.out
+$ gcc tuto/mutex.c -lpthread && a.out
 
 Ciao ciao !
 end1
@@ -231,7 +231,7 @@ et ```pthread_mutex_unlock(&philo->mutex);```
 
 **resultat :**
 ```sh
-$ gcc mutex.c -lpthread && a.out
+$ gcc tuto/mutex.c -lpthread && a.out
 
 BCyiea ob ycei
 end2
