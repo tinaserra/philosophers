@@ -16,16 +16,16 @@ void justenougheat(t_philo *ph, int fork_num)
 {
 	/* manger si must_eat le philo a assez manger*/
 	pthread_mutex_lock(&ph->bb->mutex);
-	if (ph->bb->number_of_times_each_philosopher_must_eat > 0 && 
-		ph->nb_time_eat >= ph->bb->number_of_times_each_philosopher_must_eat)
+	if (ph->bb->notep_must_eat > 0 && 
+		ph->nb_time_eat >= ph->bb->notep_must_eat)
 	{
 		pthread_mutex_unlock(&ph->bb->forks[ph->num]);
 		pthread_mutex_unlock(&ph->bb->forks[fork_num]);
 		ph->bb->enough_eat++; // un philo a mange asser
 		ph->enough_eat = 1; // le philo a asser manger
-		if (ph->bb->enough_eat >= ph->bb->number_of_philosophers)
+		if (ph->bb->enough_eat >= ph->bb->nop)
 		{
-			ph->bb->someone_died = 1;
+			ph->bb->philo_died = 1;
 			pthread_mutex_lock(&(ph->bb->print));
 			print_message(ph, DIED);
 			pthread_mutex_unlock(&(ph->bb->print));
@@ -42,12 +42,12 @@ void	justeat(t_philo *ph)
 {
 	int fork_num;
 
-	fork_num = (ph->num + 1) % ph->bb->number_of_philosophers;
+	fork_num = (ph->num + 1) % ph->bb->nop;
 
 	/* prendre les deux fourchettes */
 	pthread_mutex_lock(&ph->bb->forks[ph->num]);
 	print_message(ph, FORK_L);
-	// if 1 seul philo
+	// if 1 seul philo justone(ph);
 	pthread_mutex_lock(&ph->bb->forks[fork_num]);
 	print_message(ph, FORK_R);
 
@@ -78,19 +78,13 @@ void	*justdoit(void *data)
 	ph = (t_philo *)data;
 	if (ph->num % 2)
 		ft_usleep(ph->bb->time_to_eat);
-	// if (ph->bb->number_of_philosophers == 1)
-	// {
-	// 	pthread_mutex_lock(&ph->bb->print);
-	// 	fprintf(stderr, "\033[91mje suis l'elu\n");
-	// 	pthread_mutex_unlock(&ph->bb->print);
-	// }
 	while (1)
 	{
 		justeat(ph);
 		print_message(ph, THINKING);
 		ph->nb_time_think++;
 		// i++;
-		if (ph->bb->someone_died)
+		if (ph->bb->philo_died)
 			return (0);
 			// pthread_exit(0);
 	}

@@ -47,10 +47,10 @@ void	destroy(t_env *bb)
 {
 	int	i;
 
-	if (bb->ph && bb->number_of_philosophers > 0)
+	if (bb->ph && bb->nop > 0)
 	{
 		i = 0;
-		while (i < bb->number_of_philosophers)
+		while (i < bb->nop)
 		{
 			pthread_mutex_destroy(&(bb->forks[i]));
 			i++;

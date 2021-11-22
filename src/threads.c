@@ -15,17 +15,17 @@
 void	check(t_env *bb, int *i)
 {
 	pthread_mutex_lock(&bb->mutex);
-	if (!bb->someone_died && !bb->ph[*i].eating && !bb->ph[*i].enough_eat
+	if (!bb->philo_died && !bb->ph[*i].eating && !bb->ph[*i].enough_eat
 		&& (convert_time() - bb->ph[*i].last_time_eat) >= bb->time_to_die)
 	{
 		print_message(&(bb->ph[*i]), DIED);
-		bb->someone_died = 1;
+		bb->philo_died = 1;
 		pthread_mutex_unlock(&bb->mutex);
 		pthread_mutex_unlock(&bb->death);
 		return ;
 		// pthread_exit(0);
 	}
-	if (bb->someone_died)
+	if (bb->philo_died)
 	{
 		pthread_mutex_unlock(&bb->mutex);
 		pthread_mutex_unlock(&bb->death);
@@ -33,7 +33,7 @@ void	check(t_env *bb, int *i)
 		// pthread_exit(0);
 	}
 	(*i)++;
-	if (*i >= bb->number_of_philosophers && !bb->someone_died)
+	if (*i >= bb->nop && !bb->philo_died)
 		*i = 0;
 	pthread_mutex_unlock(&bb->mutex);
 }
@@ -46,7 +46,7 @@ void	*death(void *data)
 	bb = (t_env *)data;
 	pthread_mutex_lock(&bb->death);
 	i = 0;
-	while (i < bb->number_of_philosophers)
+	while (i < bb->nop)
 	{
 		check(bb, &i);
 		usleep(100);
@@ -62,13 +62,13 @@ int	create_philosophers(t_env *bb)
 		return (-1);
 	pthread_detach(bb->t_dead);
 	i = 0;
-	while (i < bb->number_of_philosophers)
+	while (i < bb->nop)
 	{
 		pthread_create(&(bb->ph[i].thread), NULL, &justdoit, &bb->ph[i]);
 		i++;
 	}
 	i = 0;
-	while (i < bb->number_of_philosophers)
+	while (i < bb->nop)
 	{
 		pthread_join(bb->ph[i].thread, NULL);
 		i++;

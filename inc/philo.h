@@ -79,23 +79,22 @@ typedef struct	s_philo
 
 typedef struct	s_env
 {
-	int				number_of_philosophers; //amount
+	/* arguments */
+	int				nop; // number_of_philosophers
 	useconds_t		time_to_die;
 	useconds_t		time_to_eat;
 	useconds_t		time_to_sleep;
-	int				number_of_times_each_philosopher_must_eat; //eat_amout
-
-	int				someone_died;
+	int				notep_must_eat; // number_of_times_each_philosopher_must_eat
+	/* utils */
+	int				philo_died;
 	int				enough_eat;
 	useconds_t		start_time;
-
+	/* threads & mutex */
 	pthread_t		t_dead;
-
 	pthread_mutex_t	debug;
 	pthread_mutex_t	death;
 	pthread_mutex_t	print;
 	pthread_mutex_t	mutex;
-
 	pthread_mutex_t	*forks;
 	t_philo			*ph;
 }				t_env;

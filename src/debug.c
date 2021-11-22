@@ -17,11 +17,11 @@
 void	debug_print_args(t_env *bb)
 {
 	printf("\n\n* DEBUG PRINT ARGS ----------- *\n\n");
-	printf("nb philo = %d\n", bb->number_of_philosophers);
+	printf("nb philo = %d\n", bb->nop);
 	printf("time_to_die = %d\n", bb->time_to_die);
 	printf("time_to_eat = %d\n", bb->time_to_eat);
 	printf("time_to_sleep = %d\n\n", bb->time_to_sleep);
-	printf("number_of_times_each_philosopher_must_eat = %d\n\n", bb->number_of_times_each_philosopher_must_eat);
+	printf("notep_must_eat = %d\n\n", bb->notep_must_eat);
 }
 
 #else
@@ -39,7 +39,7 @@ void	debug_print_args(t_env *bb)
 void	debug_print_struct(t_env *bb)
 {
 	printf("\n\n* DEBUG PRINT STRUCT ---------- *\n\n");
-	printf("nb philo = %d\n", bb->someone_died);
+	printf("nb philo = %d\n", bb->philo_died);
 	printf("time_to_die = %d\n", bb->enough_eat);
 	printf("time_to_eat = %d\n", bb->start_time);
 }

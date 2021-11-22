@@ -29,14 +29,14 @@ static int	init_struct(t_env *bb)
 {
 	int	i;
 
-	bb->ph = malloc(sizeof(t_philo) * bb->number_of_philosophers);
+	bb->ph = malloc(sizeof(t_philo) * bb->nop);
 	if (bb->ph == NULL)
 		return (-1);
-	bb->forks = malloc(sizeof(pthread_mutex_t) * bb->number_of_philosophers);
+	bb->forks = malloc(sizeof(pthread_mutex_t) * bb->nop);
 	if (bb->forks == NULL)
 		return (-1);
 	i = 0;
-	while (i < bb->number_of_philosophers)
+	while (i < bb->nop)
 	{
 		bb->ph[i].num = i;
 		bb->ph[i].bb = bb;
@@ -44,8 +44,8 @@ static int	init_struct(t_env *bb)
 		bb->ph[i].nb_time_eat = 0;
 		bb->ph[i].nb_time_sleep = 0;
 		bb->ph[i].nb_time_think = 0;
-		bb->ph[i].last_time_eat = convert_time();
 		bb->ph[i].enough_eat = 0;
+		bb->ph[i].last_time_eat = convert_time();
 		if (pthread_mutex_init(&(bb->forks[i]), NULL))
 			return (-1);
 		i++;
@@ -55,7 +55,7 @@ static int	init_struct(t_env *bb)
 
 static int	init_args(t_env *bb, int ac, char **av)
 {
-	if (nbr_atoi(av[1], &bb->number_of_philosophers) == -1)
+	if (nbr_atoi(av[1], &bb->nop) == -1)
 		return (print_error(ARG1));
 	if (time_atoi(av[2], &bb->time_to_die) == -1)
 		return (print_error(ARG2));
@@ -64,7 +64,7 @@ static int	init_args(t_env *bb, int ac, char **av)
 	if (time_atoi(av[4], &bb->time_to_sleep) == -1)
 		return (print_error(ARG4));
 	if (ac == 6)
-		if (nbr_atoi(av[5], &bb->number_of_times_each_philosopher_must_eat) == -1)
+		if (nbr_atoi(av[5], &bb->notep_must_eat) == -1)
 			return (print_error(ARG5));
 	bb->start_time = convert_time();
 	debug_print_args(bb);

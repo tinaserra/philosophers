@@ -22,7 +22,7 @@ void	print_sumup(t_env *bb)
 	printf("\n\nto sum up ! --------- *\n\n");
 	printf("\033[32m%-15s %-15s %-15s %-15s\n", "philo", "eat", "sleep", "think");
 	i = 0;
-	while (i < bb->number_of_philosophers)
+	while (i < bb->nop)
 	{
 		printf("%-15d %-15d %-15d %-15d\n", bb->ph[i].num, bb->ph[i].nb_time_eat, bb->ph[i].nb_time_sleep, bb->ph[i].nb_time_think);
 		i++;
@@ -32,7 +32,7 @@ void	print_sumup(t_env *bb)
 int	print_message(t_philo *ph, int msg)
 {
 	pthread_mutex_lock(&(ph->bb->print));
-	if (ph->bb->someone_died)
+	if (ph->bb->philo_died)
 	{
 		pthread_mutex_unlock(&(ph->bb->print));
 		return (0);
