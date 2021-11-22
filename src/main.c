@@ -77,10 +77,9 @@ int	main(int ac, char **av)
 	}
 	create_philosophers(&bb);
 
-	// pthread_mutex_lock(&bb.death);
-	// pthread_mutex_unlock(&bb.death);
+	pthread_mutex_lock(&bb.death);
+	pthread_mutex_unlock(&bb.death);
 	ft_usleep(5);
 	destroy(&bb);
-
 	return (0);
 }

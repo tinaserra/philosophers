@@ -16,15 +16,13 @@ void justenougheat(t_philo *ph, int fork_num)
 {
 	/* manger si must_eat le philo a assez manger*/
 	pthread_mutex_lock(&ph->bb->mutex);
-	if (ph->bb->number_of_times_each_philosopher_must_eat > 0 && ph->nb_time_eat >= ph->bb->number_of_times_each_philosopher_must_eat)
+	if (ph->bb->number_of_times_each_philosopher_must_eat > 0 && 
+		ph->nb_time_eat >= ph->bb->number_of_times_each_philosopher_must_eat)
 	{
-		pthread_mutex_lock(&ph->bb->debug);
-		fprintf(stderr, "\033[92mphilo %d : dois-je manger ?\n", ph->num);
-
 		pthread_mutex_unlock(&ph->bb->forks[ph->num]);
 		pthread_mutex_unlock(&ph->bb->forks[fork_num]);
-		// p->s->enough_eat++; // un philo a mange asser
-		// p->must_eat = 1; // le philo a asser manger
+		ph->bb->enough_eat++; // un philo a mange asser
+		ph->enough_eat = 1; // le philo a asser manger
 		if (ph->bb->enough_eat >= ph->bb->number_of_philosophers)
 		{
 			ph->bb->someone_died = 1;
@@ -33,10 +31,10 @@ void justenougheat(t_philo *ph, int fork_num)
 			pthread_mutex_unlock(&(ph->bb->print));
 		}
 		pthread_mutex_unlock(&ph->bb->mutex);
-		pthread_exit(0);
-
-		pthread_mutex_unlock(&ph->bb->debug);
+		return ;
+		// pthread_exit(0);
 	}
+	pthread_mutex_unlock(&ph->bb->mutex);
 	ft_usleep(ph->bb->time_to_eat);
 }
 
@@ -49,6 +47,7 @@ void	justeat(t_philo *ph)
 	/* prendre les deux fourchettes */
 	pthread_mutex_lock(&ph->bb->forks[ph->num]);
 	print_message(ph, FORK_L);
+	// if 1 seul philo
 	pthread_mutex_lock(&ph->bb->forks[fork_num]);
 	print_message(ph, FORK_R);
 
@@ -74,27 +73,29 @@ void	*justdoit(void *data)
 {
 	t_philo	*ph;
 
-	int i = 0;
+	// int i = 0;
 
 	ph = (t_philo *)data;
 	if (ph->num % 2)
 		ft_usleep(ph->bb->time_to_eat);
-	if (ph->bb->number_of_philosophers == 1)
-	{
-		pthread_mutex_lock(&ph->bb->print);
-		fprintf(stderr, "\033[91mje suis l'elu\n");
-		pthread_mutex_unlock(&ph->bb->print);
-	}
-	while (i < 2) // (1)
+	// if (ph->bb->number_of_philosophers == 1)
+	// {
+	// 	pthread_mutex_lock(&ph->bb->print);
+	// 	fprintf(stderr, "\033[91mje suis l'elu\n");
+	// 	pthread_mutex_unlock(&ph->bb->print);
+	// }
+	while (1)
 	{
 		justeat(ph);
 		print_message(ph, THINKING);
 		ph->nb_time_think++;
-		i++;
+		// i++;
 		if (ph->bb->someone_died)
-			return 0;
+			return (0);
+			// pthread_exit(0);
 	}
-	return 0;
+	return (0);
+	// pthread_exit(0);
 }
 
 

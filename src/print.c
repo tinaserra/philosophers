@@ -22,10 +22,12 @@ int	print_message(t_philo *ph, int msg)
 		pthread_mutex_unlock(&(ph->bb->print));
 		return (0);
 	}
-	ft_putnbr_fd(convert_time() - ph->bb->start_time, STDOUT_FILENO);
-	ft_putchar_fd(' ', STDOUT_FILENO);
+	ft_putstr_fd(" the philo ", STDOUT_FILENO);
 	ft_putnbr_fd((ph->num + 1), STDOUT_FILENO);
+	ft_putstr_fd(" : ", STDOUT_FILENO);
 	ft_putstr_fd(g_str_msg[msg], STDOUT_FILENO);
+	ft_putstr_fd("time : ", STDOUT_FILENO);
+	ft_putnbr_fd(convert_time() - ph->bb->start_time, STDOUT_FILENO);
 	pthread_mutex_unlock(&(ph->bb->print));
 	return (0);
 }
