@@ -105,24 +105,17 @@ typedef struct	s_env
 ** PROTOTYPES --------------------------------------------------------------- **
 */
 
-/* string.c */
-int	print_error(int error);
-int	print_message(t_philo *ph, int msg);
-
-/* utils.c */
-int		ft_strlen(char *s);
-void	ft_putchar_fd(char c, int fd);
-void	ft_putstr_fd(char *s, int fd);
-void	ft_bzero(void *s, unsigned int n);
-void	ft_putnbr_fd(int n, int fd);
-int		convert_time(void);
-void	ft_usleep(useconds_t time_in_ms);
-
-int		nbr_atoi(const char *str, int *arg);
-int		time_atoi(const char *str, useconds_t *time);
+/* print.c */
+int		print_error(int error);
+int		print_message(t_philo *ph, int msg);
+void	print_sumup(t_env *bb);
 
 /* init_struct */
 int	init_start(t_env *bb, int ac, char **av);
+
+/* init_utils */
+int		nbr_atoi(const char *str, int *arg);
+int		time_atoi(const char *str, useconds_t *time);
 
 /* threads.c */
 int	create_philosophers(t_env *bb);
@@ -133,5 +126,14 @@ void	*justdoit(void *data);
 /* debug.c */
 void	debug_print_args(t_env *bb);
 void	debug_print_struct(t_env *bb);
+
+/* utils.c */
+int		ft_strlen(char *s);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_bzero(void *s, unsigned int n);
+void	ft_putnbr_fd(int n, int fd);
+int		convert_time(void);
+void	ft_usleep(useconds_t time_in_ms);
 
 #endif

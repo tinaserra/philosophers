@@ -14,6 +14,21 @@
 #include "message.h"
 #include "error.h"
 
+void	print_sumup(t_env *bb)
+{
+	int i;
+
+	/* print la synthese */
+	printf("\n\nto sum up ! --------- *\n\n");
+	printf("\033[32m%-15s %-15s %-15s %-15s\n", "philo", "eat", "sleep", "think");
+	i = 0;
+	while (i < bb->number_of_philosophers)
+	{
+		printf("%-15d %-15d %-15d %-15d\n", bb->ph[i].num, bb->ph[i].nb_time_eat, bb->ph[i].nb_time_sleep, bb->ph[i].nb_time_think);
+		i++;
+	}
+}
+
 int	print_message(t_philo *ph, int msg)
 {
 	pthread_mutex_lock(&(ph->bb->print));
