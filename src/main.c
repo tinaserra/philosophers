@@ -6,11 +6,13 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/04 10:01:51 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/07 21:52:28 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+// int		g_time_now;
 
 /*
 ** int gettimeofday(struct timeval *tv, struct timezone *tz);

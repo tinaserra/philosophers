@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   states.c                                           :+:      :+:    :+:   */
+/*   do_it.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:42:05 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 17:46:24 by vserra           ###   ########.fr       */
+/*   Updated: 2021/12/07 18:34:39 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,14 @@ void	justeat(t_philo *ph)
 	/* prendre les deux fourchettes */
 	pthread_mutex_lock(&ph->bb->forks[ph->num]);
 	print_message(ph, FORK_L);
+
 	// if 1 seul philo justone(ph);
+	if (ph->bb->nop == 1)
+	{
+		ft_usleep(ph->bb->time_to_die);
+		pthread_mutex_unlock(&(ph->bb->forks[ph->num]));
+		return ; 
+	}
 	pthread_mutex_lock(&ph->bb->forks[fork_num]);
 	print_message(ph, FORK_R);
 
@@ -56,6 +63,7 @@ void	justeat(t_philo *ph)
 	ph->eating = 1;
 	ph->last_time_eat = convert_time();
 	ph->nb_time_eat++;
+	pthread_mutex_unlock(&ph->bb->mutex);
 
 	/* manger si must_eat le philo a assez manger*/
 	justenougheat(ph, fork_num);
@@ -73,20 +81,18 @@ void	*justdoit(void *data)
 {
 	t_philo	*ph;
 
-	// int i = 0;
-
 	ph = (t_philo *)data;
 	if (ph->num % 2)
 		ft_usleep(ph->bb->time_to_eat);
 	while (1)
 	{
+		pthread_mutex_lock(&ph->bb->mutex);
 		justeat(ph);
+
 		print_message(ph, THINKING);
 		ph->nb_time_think++;
-		// i++;
 		if (ph->bb->philo_died)
 			return (0);
-			// pthread_exit(0);
 	}
 	return (0);
 	// pthread_exit(0);
