@@ -4,15 +4,24 @@ I’ve never thought philosophy would be so deadly
 ### Usage
 
 ```s
-make && ./philo ./philo 4 310 200 200
+make && ./philo 4 310 200 200
 ```
 ### Sommaire
 
 1. [Le sujet](https://github.com/tinaserra/philosophers#1-sujet)
 2. [Les threads](https://github.com/tinaserra/philosophers#2-quest-ce-quun-thread-)
+3. [Les mutex](https://github.com/tinaserra/philosophers#3-quest-ce-quun-mutex-)
+
 ## 1. Sujet
 
-Eating - Sleeping - Thinking
+* [Sujet 42](https://cdn.intra.42.fr/pdf/pdf/34923/en.subject.pdf)
+
+### Description
+* Chaque philosophe est un **thread**, et chaque fourchette est un **mutex**
+* Ils font dans l'ordre : **manger ➜ dormir ➜ penser.**
+* Il y a une seule fourchette par philisophe et ils doivent avoir deux fourchettes pour manger (ils empruntent une fourchette a leur voisin).
+* si un philosophe meurt la simulation s'arrête et on doit afficher la mort dans maximum 10 millisecondes.
+* On doit écrire chaque changement de statut de philosophe.
 
 ### Fonctions autorisées
 
@@ -26,6 +35,10 @@ Eating - Sleeping - Thinking
 * ```pthread_mutex_destroy```
 * ```pthread_mutex_lock``` bloque / verouille le mutex prendant qu'on l'utilise dans un tread x et empecher les threads y, z, ... de l'utiliser simultanément.
 * ```pthread_mutex_unlock```
+
+### Fonction non autorisée
+
+* la fonction ```pthread_exit``` n'est pas autorisé pour le projet de 42 tu peux mettre tout simplement un ```return ;```
 
 ## 2. Qu'est-ce qu'un thread ?
 
@@ -108,7 +121,7 @@ int		main(void)
 
 le programme s'arrete donc au ```pthread_join(t1, NULL);``` juqu'a ce que les thread soit fini puis il continue.
 
-## qu'est-ce qu'un mutex ?
+## 3. Qu'est-ce qu'un mutex ?
 
 si deux thread utilisent la meme variable en meme temps ca peut faire des problemes. pour que les thread utilisent la variable chacun leur tour on peut les bloquer temporairement grace aux **mutex**.
 
@@ -256,9 +269,3 @@ sans les mutex les threads s'executent en meme temps
 dans l'exemple d'avant j'utilise ```fprintf```.</br>
 si tu utisile la fonction ```printf``` tu peux avoir l'impression que tout fonctionne correctement **sans les mutex**.</br>
 je pense que c'est du au fait que ```printf``` ecrit la string dans un buffer avant de la print. donc tu ne verra pas les caracteres de la string dans le desordre meme si tu n'utilise pas les mutex dans ton code.</br>
-
-#### pour 42
-pour le projet philosopher a 42, la plupart des gens utilisent ```write```.
-egalement, la fonction ```pthread_exit``` n'est pas autorisé pour le projet de 42 tu peux mettre tout simplement un ```return ;```
-
-
