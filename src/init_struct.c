@@ -6,7 +6,7 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:26:31 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/04 09:54:00 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/07 22:37:00 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	init_struct(t_env *bb)
 		bb->ph[i].nb_time_sleep = 0;
 		bb->ph[i].nb_time_think = 0;
 		bb->ph[i].enough_eat = 0;
-		bb->ph[i].last_time_eat = convert_time();
+		get_time_in_usec(&bb->ph[i].last_time_eat);
 		if (pthread_mutex_init(&(bb->forks[i]), NULL))
 			return (-1);
 		i++;
@@ -66,7 +66,7 @@ static int	init_args(t_env *bb, int ac, char **av)
 	if (ac == 6)
 		if (nbr_atoi(av[5], &bb->notep_must_eat) == -1)
 			return (print_error(ARG5));
-	bb->start_time = convert_time();
+	get_time_in_usec(&bb->start_time);
 	debug_print_args(bb);
 	debug_print_struct(bb);
 	return (0);

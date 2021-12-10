@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 15:08:41 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/03 17:32:25 by vserra           ###   ########.fr       */
+/*   Updated: 2021/12/07 22:57:04 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 void	check(t_env *bb, int *i)
 {
+	useconds_t time;
+
 	pthread_mutex_lock(&bb->mutex);
+	get_time_in_usec(&time);
 	if (!bb->philo_died && !bb->ph[*i].eating && !bb->ph[*i].enough_eat
-		&& (convert_time() - bb->ph[*i].last_time_eat) >= bb->time_to_die)
+		&& (time - bb->ph[*i].last_time_eat) >= bb->time_to_die)
 	{
 		print_message(&(bb->ph[*i]), DIED);
 		bb->philo_died = 1;
@@ -73,6 +76,6 @@ int	create_philosophers(t_env *bb)
 		pthread_join(bb->ph[i].thread, NULL);
 		i++;
 	}
-	print_sumup(bb);
+	// print_sumup(bb);
 	return (0);
 }

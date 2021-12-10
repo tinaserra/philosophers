@@ -6,7 +6,7 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:42:05 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/07 18:34:39 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/07 22:46:10 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,9 @@ void justenougheat(t_philo *ph, int fork_num)
 		}
 		pthread_mutex_unlock(&ph->bb->mutex);
 		return ;
-		// pthread_exit(0);
 	}
 	pthread_mutex_unlock(&ph->bb->mutex);
-	ft_usleep(ph->bb->time_to_eat);
+	usleep(ph->bb->time_to_eat);
 }
 
 void	justeat(t_philo *ph)
@@ -51,7 +50,7 @@ void	justeat(t_philo *ph)
 	// if 1 seul philo justone(ph);
 	if (ph->bb->nop == 1)
 	{
-		ft_usleep(ph->bb->time_to_die);
+		usleep(ph->bb->time_to_die);
 		pthread_mutex_unlock(&(ph->bb->forks[ph->num]));
 		return ; 
 	}
@@ -61,7 +60,7 @@ void	justeat(t_philo *ph)
 	/* manger pendant time_to_eat */
 	print_message(ph, EATING);
 	ph->eating = 1;
-	ph->last_time_eat = convert_time();
+	get_time_in_usec(&ph->last_time_eat);
 	ph->nb_time_eat++;
 	pthread_mutex_unlock(&ph->bb->mutex);
 
@@ -74,7 +73,7 @@ void	justeat(t_philo *ph)
 	ph->eating = 0;
 	print_message(ph, SLEEPING);
 	ph->nb_time_sleep++;
-	ft_usleep(ph->bb->time_to_sleep);
+	usleep(ph->bb->time_to_sleep);
 }
 
 void	*justdoit(void *data)
@@ -83,7 +82,7 @@ void	*justdoit(void *data)
 
 	ph = (t_philo *)data;
 	if (ph->num % 2)
-		ft_usleep(ph->bb->time_to_eat);
+		usleep(ph->bb->time_to_eat);
 	while (1)
 	{
 		pthread_mutex_lock(&ph->bb->mutex);

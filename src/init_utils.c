@@ -22,7 +22,7 @@ int	time_atoi(const char *str, useconds_t *time)
 	}
 	if (str[i] != '\0')
 		return (-1);
-	*time = nbr;
+	*time = nbr * 1000;
 	return (0);
 }
 

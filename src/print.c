@@ -6,7 +6,7 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 18:33:50 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/07 18:36:41 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/07 22:38:59 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	print_sumup(t_env *bb)
 
 int	print_message(t_philo *ph, int msg)
 {
+	useconds_t time;
+
 	pthread_mutex_lock(&(ph->bb->print));
 	if (ph->bb->philo_died)
 	{
@@ -38,7 +40,9 @@ int	print_message(t_philo *ph, int msg)
 		return (0);
 	}
 	ft_putstr_fd("time : ", STDOUT_FILENO);
-	ft_putnbr_fd(convert_time() - ph->bb->start_time, STDOUT_FILENO);
+	get_time_in_usec(&time);
+
+	ft_putnbr_fd((time - ph->bb->start_time) / 1000, STDOUT_FILENO);
 	ft_putstr_fd(" the philo ", STDOUT_FILENO);
 	ft_putnbr_fd((ph->num + 1), STDOUT_FILENO);
 	ft_putstr_fd(" : ", STDOUT_FILENO);

@@ -6,7 +6,7 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:13:46 by vserra            #+#    #+#             */
-/*   Updated: 2021/11/04 09:56:49 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/07 22:31:39 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_bzero(void *s, unsigned int n);
 void	ft_putnbr_fd(int n, int fd);
-int		convert_time(void);
-void	ft_usleep(useconds_t time_in_ms);
+int		get_time_in_usec(useconds_t *actual_time);
+int	ft_usleep(useconds_t time_in_ms);
 
 #endif

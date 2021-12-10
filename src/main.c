@@ -6,7 +6,7 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/07 21:52:28 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/07 22:31:39 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@
 ** l'argument timezone doit etre NULL.
 */
 
-int	convert_time(void)
+int	get_time_in_usec(useconds_t *actual_time)
 {
 	static struct timeval	current_time;
 
 	if (gettimeofday(&current_time, NULL) == -1)
 		return (print_error(GETTIMEOFDAY));
-	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
+	*actual_time = ((current_time.tv_sec * 1000000) + (current_time.tv_usec));
+	return (0);
 }
 
 /*
@@ -36,14 +37,16 @@ int	convert_time(void)
 ** donc n'est pas precise
 */
 
-void	ft_usleep(useconds_t time_in_ms)
-{
-	useconds_t	start_time;
+// int	ft_usleep(useconds_t time_in_ms)
+// {
+// 	useconds_t	start_time;
 
-	start_time = convert_time();
-	while ((convert_time() - start_time) < time_in_ms)
-		usleep(time_in_ms / 10);
-}
+// 	if (get_time_in_usec(&start_time) == -1)
+// 		return (print_error(GETTIMEOFDAY));
+// 	while ((get_time_in_usec(&start_time) - start_time) < time_in_ms)
+// 		usleep(time_in_ms / 10);
+// 	return (0);
+// }
 
 void	destroy(t_env *bb)
 {
@@ -81,7 +84,7 @@ int	main(int ac, char **av)
 
 	pthread_mutex_lock(&bb.death);
 	pthread_mutex_unlock(&bb.death);
-	ft_usleep(5);
+	usleep(5);
 	destroy(&bb);
 	return (0);
 }
