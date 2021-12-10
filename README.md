@@ -1,7 +1,18 @@
-# philosophers
+# Philosophers 
 I’ve never thought philosophy would be so deadly
 
-## Le sujet
+### Usage
+
+```s
+make && ./philo ./philo 4 310 200 200
+```
+### Sommaire
+
+1. [Le sujet](https://github.com/tinaserra/philosophers#1-sujet)
+2. [Les threads](https://github.com/tinaserra/philosophers#2-quest-ce-quun-thread-)
+## 1. Sujet
+
+Eating - Sleeping - Thinking
 
 ### Fonctions autorisées
 
@@ -16,7 +27,7 @@ I’ve never thought philosophy would be so deadly
 * ```pthread_mutex_lock``` bloque / verouille le mutex prendant qu'on l'utilise dans un tread x et empecher les threads y, z, ... de l'utiliser simultanément.
 * ```pthread_mutex_unlock```
 
-## qu'est-ce qu'un thread ?
+## 2. Qu'est-ce qu'un thread ?
 
 les thread sont des programmes qui vont demarrer au sein d'un premier et qui vont se separer pour accomplir des taches / effectuer leurs instructions simultanement / en meme temps, sans forcement etre lies sauf en terme de memoire. c'est de la programmation dite asynchrone.
 

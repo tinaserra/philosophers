@@ -26,14 +26,12 @@ void	check(t_env *bb, int *i)
 		pthread_mutex_unlock(&bb->mutex);
 		pthread_mutex_unlock(&bb->death);
 		return ;
-		// pthread_exit(0);
 	}
 	if (bb->philo_died)
 	{
 		pthread_mutex_unlock(&bb->mutex);
 		pthread_mutex_unlock(&bb->death);
 		return ;
-		// pthread_exit(0);
 	}
 	(*i)++;
 	if (*i >= bb->nop && !bb->philo_died)
@@ -76,6 +74,6 @@ int	create_philosophers(t_env *bb)
 		pthread_join(bb->ph[i].thread, NULL);
 		i++;
 	}
-	// print_sumup(bb);
+	print_sumup(bb);
 	return (0);
 }

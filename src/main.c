@@ -80,8 +80,11 @@ int	main(int ac, char **av)
 		debug_print_args(&bb);
 		return (-1);
 	}
-	create_philosophers(&bb);
-
+	if (create_philosophers(&bb) == -1)
+	{
+		destroy(&bb);
+		return (-1);
+	}
 	pthread_mutex_lock(&bb.death);
 	pthread_mutex_unlock(&bb.death);
 	usleep(5);

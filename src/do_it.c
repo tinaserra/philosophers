@@ -14,13 +14,14 @@
 
 void justenougheat(t_philo *ph, int fork_num)
 {
+	(void)fork_num;
 	/* manger si must_eat le philo a assez manger*/
 	pthread_mutex_lock(&ph->bb->mutex);
 	if (ph->bb->notep_must_eat > 0 && 
 		ph->nb_time_eat >= ph->bb->notep_must_eat)
 	{
 		pthread_mutex_unlock(&ph->bb->forks[ph->num]);
-		pthread_mutex_unlock(&ph->bb->forks[fork_num]);
+		pthread_mutex_unlock(&ph->bb->forks[(ph->num + 1) % ph->bb->nop]);
 		ph->bb->enough_eat++; // un philo a mange asser
 		ph->enough_eat = 1; // le philo a asser manger
 		if (ph->bb->enough_eat >= ph->bb->nop)
@@ -31,7 +32,7 @@ void justenougheat(t_philo *ph, int fork_num)
 			pthread_mutex_unlock(&(ph->bb->print));
 		}
 		pthread_mutex_unlock(&ph->bb->mutex);
-		return ;
+		pthread_exit(0);
 	}
 	pthread_mutex_unlock(&ph->bb->mutex);
 	usleep(ph->bb->time_to_eat);
@@ -51,7 +52,7 @@ void	justeat(t_philo *ph)
 	if (ph->bb->nop == 1)
 	{
 		usleep(ph->bb->time_to_die);
-		pthread_mutex_unlock(&(ph->bb->forks[ph->num]));
+		pthread_mutex_unlock(&ph->bb->forks[ph->num]);
 		return ; 
 	}
 	pthread_mutex_lock(&ph->bb->forks[fork_num]);
@@ -62,7 +63,7 @@ void	justeat(t_philo *ph)
 	ph->eating = 1;
 	get_time_in_usec(&ph->last_time_eat);
 	ph->nb_time_eat++;
-	pthread_mutex_unlock(&ph->bb->mutex);
+	pthread_mutex_unlock(&ph->bb->mutex); // ---------------
 
 	/* manger si must_eat le philo a assez manger*/
 	justenougheat(ph, fork_num);
@@ -85,7 +86,7 @@ void	*justdoit(void *data)
 		usleep(ph->bb->time_to_eat);
 	while (1)
 	{
-		pthread_mutex_lock(&ph->bb->mutex);
+		pthread_mutex_lock(&ph->bb->mutex); // --------------
 		justeat(ph);
 
 		print_message(ph, THINKING);
@@ -94,7 +95,6 @@ void	*justdoit(void *data)
 			return (0);
 	}
 	return (0);
-	// pthread_exit(0);
 }
 
 

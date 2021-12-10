@@ -33,10 +33,10 @@ int	print_message(t_philo *ph, int msg)
 {
 	useconds_t time;
 
-	pthread_mutex_lock(&(ph->bb->print));
+	pthread_mutex_lock(&ph->bb->print);
 	if (ph->bb->philo_died)
 	{
-		pthread_mutex_unlock(&(ph->bb->print));
+		pthread_mutex_unlock(&ph->bb->print);
 		return (0);
 	}
 	ft_putstr_fd("time : ", STDOUT_FILENO);
@@ -47,7 +47,7 @@ int	print_message(t_philo *ph, int msg)
 	ft_putnbr_fd((ph->num + 1), STDOUT_FILENO);
 	ft_putstr_fd(" : ", STDOUT_FILENO);
 	ft_putstr_fd(g_str_msg[msg], STDOUT_FILENO);
-	pthread_mutex_unlock(&(ph->bb->print));
+	pthread_mutex_unlock(&ph->bb->print);
 	return (0);
 }
 
