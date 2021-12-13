@@ -94,7 +94,7 @@ typedef struct	s_env
 	int				enough_eat;
 	useconds_t		start_time;
 	/* threads & mutex */
-	pthread_t		t_dead;
+	// pthread_t		t_dead;
 	pthread_mutex_t	debug;
 	pthread_mutex_t	death;
 	pthread_mutex_t	print;
@@ -139,6 +139,6 @@ void	ft_putstr_fd(char *s, int fd);
 void	ft_bzero(void *s, unsigned int n);
 void	ft_putnbr_fd(int n, int fd);
 int		get_time_in_usec(useconds_t *actual_time);
-int	ft_usleep(useconds_t time_in_ms);
+int		ft_usleep(useconds_t time_in_ms, t_env *bb);
 
 #endif

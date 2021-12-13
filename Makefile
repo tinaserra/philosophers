@@ -22,7 +22,7 @@ SRC =	main.c \
 NAME = philo
 
 # override -> permet de reecrire la suite de la variable
-override CFLAGS += -Wall -Wextra -Werror -MMD -g3 #-fsanitize=thread #-fsanitize=address
+override CFLAGS += -Wall -Wextra -Werror -MMD -O3 #-fsanitize=thread #-fsanitize=address
 LPTHREAD = -lpthread
 
 OBJ_DIR = obj

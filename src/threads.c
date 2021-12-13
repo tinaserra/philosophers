@@ -15,6 +15,7 @@
 static int	check(t_env *bb, int *i)
 {
 	int		tmp_eating;
+	int		tmp_nb_time_eat;
 	useconds_t time;
 	useconds_t		tmp_last_time_eat;
 
@@ -22,6 +23,7 @@ static int	check(t_env *bb, int *i)
 	pthread_mutex_lock(&bb->ph[*i].mutex_eating);
 	tmp_eating = bb->ph[*i].eating;
 	tmp_last_time_eat = bb->ph[*i].last_time_eat;
+	tmp_nb_time_eat = bb->ph[*i].nb_time_eat;
 	pthread_mutex_unlock(&bb->ph[*i].mutex_eating);
 
 	get_time_in_usec(&time);
@@ -36,6 +38,8 @@ static int	check(t_env *bb, int *i)
 		pthread_mutex_unlock(&bb->death);
 		return (-1);
 	}
+	if (bb->notep_must_eat == 0 || tmp_nb_time_eat < bb->notep_must_eat)
+		bb->enough_eat = 0;
 	// if (bb->philo_died)
 	// {
 	// 	pthread_mutex_unlock(&bb->mutex);
@@ -43,8 +47,6 @@ static int	check(t_env *bb, int *i)
 	// 	return ;
 	// }
 	(*i)++;
-	if (*i >= bb->nop && !bb->philo_died)
-		*i = 0;
 	pthread_mutex_unlock(&bb->mutex);
 	return (0);
 }
@@ -56,11 +58,24 @@ static void	death(t_env *bb)
 	pthread_mutex_lock(&bb->death);
 	pthread_mutex_unlock(&bb->create);
 	i = 0;
+	bb->enough_eat = 1;
 	while (i < bb->nop)
 	{
 		if (check(bb, &i) == -1)
 			break ;
 		usleep(100);
+		if (i >= bb->nop && !bb->philo_died)
+		{
+			if (bb->enough_eat == 1)
+			{
+				pthread_mutex_lock(&bb->died);
+				bb->philo_died = 1;
+				pthread_mutex_unlock(&bb->died);
+				break ;
+			}
+			i = 0;
+			bb->enough_eat = 1;
+		}
 	}
 	return ;
 }

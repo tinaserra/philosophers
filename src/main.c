@@ -29,7 +29,7 @@ int	get_time_in_usec(useconds_t *actual_time)
 	if (gettimeofday(&current_time, NULL) == -1)
 		return (print_error(GETTIMEOFDAY));
 	*actual_time = ((current_time.tv_sec * 1000000) + (current_time.tv_usec));
-	return (0);
+	return (*actual_time);
 }
 
 /*
@@ -37,16 +37,29 @@ int	get_time_in_usec(useconds_t *actual_time)
 ** donc n'est pas precise
 */
 
-// int	ft_usleep(useconds_t time_in_ms)
-// {
-// 	useconds_t	start_time;
+int	ft_usleep(useconds_t time_in_usec, t_env *bb)
+{
+	useconds_t	start_time;
+	useconds_t	actual_time;
 
-// 	if (get_time_in_usec(&start_time) == -1)
-// 		return (print_error(GETTIMEOFDAY));
-// 	while ((get_time_in_usec(&start_time) - start_time) < time_in_ms)
-// 		usleep(time_in_ms / 10);
-// 	return (0);
-// }
+	start_time = 0;
+	actual_time = 0;
+	if (get_time_in_usec(&start_time) == -1)
+		return (print_error(GETTIMEOFDAY));
+	while ((get_time_in_usec(&actual_time) - start_time) < time_in_usec)
+	{
+		pthread_mutex_lock(&bb->died);
+		if (bb->philo_died)
+		{
+			pthread_mutex_unlock(&bb->died);
+			break ;
+		}
+		pthread_mutex_unlock(&bb->died);
+		usleep(100);
+
+	}
+	return (0);
+}
 
 void	destroy(t_env *bb)
 {
