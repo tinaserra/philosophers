@@ -36,9 +36,6 @@ static int	init_struct(t_env *bb)
 	bb->ph = malloc(sizeof(t_philo) * bb->nop);
 	if (bb->ph == NULL)
 		return (-1);
-	// bb->forks = malloc(sizeof(pthread_mutex_t) * bb->nop);
-	// if (bb->forks == NULL)
-	// 	return (-1);
 	i = 0;
 	while (i < bb->nop)
 	{
@@ -46,10 +43,7 @@ static int	init_struct(t_env *bb)
 		bb->ph[i].bb = bb;
 		bb->ph[i].eating = 0;
 		bb->ph[i].nb_time_eat = 0;
-		// bb->ph[i].nb_time_sleep = 0;
-		// bb->ph[i].nb_time_think = 0;
 		bb->ph[i].enough_eat = 0;
-	
 		get_time_in_usec(&bb->ph[i].last_time_eat);
 		if (pthread_mutex_init(&(bb->ph[i].fork), NULL))
 			return (-1);

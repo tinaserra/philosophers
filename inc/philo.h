@@ -69,8 +69,6 @@ typedef struct	s_philo
 	int				eating;
 	int				enough_eat;
 	int				nb_time_eat;
-	// int				nb_time_sleep;
-	// int				nb_time_think;
 	useconds_t		last_time_eat;
 	pthread_t		thread;
 	pthread_mutex_t	mutex_eating;
@@ -89,12 +87,13 @@ typedef struct	s_env
 	useconds_t		time_to_eat;
 	useconds_t		time_to_sleep;
 	int				notep_must_eat; // number_of_times_each_philosopher_must_eat
+
 	/* utils */
 	int				philo_died;
 	int				enough_eat;
 	useconds_t		start_time;
+
 	/* threads & mutex */
-	// pthread_t		t_dead;
 	pthread_mutex_t	debug;
 	pthread_mutex_t	death;
 	pthread_mutex_t	print;

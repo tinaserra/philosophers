@@ -12,36 +12,8 @@
 
 #include "philo.h"
 
-// void justenougheat(t_philo *ph)
-// {
-// 	/* manger si must_eat le philo a assez manger*/
-// 	pthread_mutex_lock(&ph->bb->mutex);
-// 	if (ph->bb->notep_must_eat > 0 && 
-// 		ph->nb_time_eat >= ph->bb->notep_must_eat)
-// 	{
-// 		pthread_mutex_unlock(ph->left_fork);
-// 		pthread_mutex_unlock(ph->right_fork);
-// 		ph->bb->enough_eat++; // un philo a mange asser
-// 		ph->enough_eat = 1; // le philo a asser manger
-// 		if (ph->bb->enough_eat >= ph->bb->nop)
-// 		{
-// 			ph->bb->philo_died = 1;
-// 			pthread_mutex_lock(&(ph->bb->print));
-// 			print_message(ph, DIED);
-// 			pthread_mutex_unlock(&(ph->bb->print));
-// 		}
-// 		pthread_mutex_unlock(&ph->bb->mutex);
-// 		return ;
-// 	}
-// 	pthread_mutex_unlock(&ph->bb->mutex);
-// }
-
 void	justeat(t_philo *ph)
 {
-	// int fork_num;
-
-	// fork_num = (ph->num + 1) % ph->bb->nop;
-
 	/* prendre les deux fourchettes */
 	pthread_mutex_lock(ph->left_fork);
 	print_message(ph, FORK_L);
@@ -50,7 +22,6 @@ void	justeat(t_philo *ph)
 	if (ph->bb->nop == 1)
 	{
 		ft_usleep(ph->bb->time_to_die, ph->bb);
-		// usleep(ph->bb->time_to_die);
 		pthread_mutex_unlock(ph->left_fork);
 		return ; 
 	}
@@ -63,11 +34,7 @@ void	justeat(t_philo *ph)
 	ph->eating = 1;
 	get_time_in_usec(&ph->last_time_eat);
 	pthread_mutex_unlock(&ph->mutex_eating);
-
-	/* manger si must_eat le philo a assez manger*/
-	// justenougheat(ph);
 	ft_usleep(ph->bb->time_to_eat, ph->bb);
-	// usleep(ph->bb->time_to_eat);
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->nb_time_eat++;
 	pthread_mutex_unlock(&ph->mutex_eating);
@@ -79,9 +46,7 @@ void	justeat(t_philo *ph)
 	ph->eating = 0;
 	pthread_mutex_unlock(&ph->mutex_eating);
 	print_message(ph, SLEEPING);
-	// ph->nb_time_sleep++;
 	ft_usleep(ph->bb->time_to_sleep, ph->bb);
-	// usleep(ph->bb->time_to_sleep);
 }
 
 void	*justdoit(void *data)
@@ -93,12 +58,10 @@ void	*justdoit(void *data)
 	pthread_mutex_unlock(&ph->bb->create);
 	if (ph->num % 2)
 		ft_usleep(ph->bb->time_to_eat, ph->bb);
-		// usleep(ph->bb->time_to_eat);
 	while (1)
 	{
 		justeat(ph);
 		print_message(ph, THINKING);
-		// ph->nb_time_think++;
 		if (ph->bb->philo_died)
 			return (0);
 	}
