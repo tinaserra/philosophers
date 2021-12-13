@@ -22,6 +22,10 @@ static int	init_mutex(t_env *bb)
 		return (-1);
 	if (pthread_mutex_init(&(bb->debug), NULL))
 		return (-1);
+	if (pthread_mutex_init(&(bb->create), NULL))
+		return (-1);
+	if (pthread_mutex_init(&(bb->died), NULL))
+		return (-1);
 	return (0);
 }
 
@@ -32,9 +36,9 @@ static int	init_struct(t_env *bb)
 	bb->ph = malloc(sizeof(t_philo) * bb->nop);
 	if (bb->ph == NULL)
 		return (-1);
-	bb->forks = malloc(sizeof(pthread_mutex_t) * bb->nop);
-	if (bb->forks == NULL)
-		return (-1);
+	// bb->forks = malloc(sizeof(pthread_mutex_t) * bb->nop);
+	// if (bb->forks == NULL)
+	// 	return (-1);
 	i = 0;
 	while (i < bb->nop)
 	{
@@ -42,11 +46,21 @@ static int	init_struct(t_env *bb)
 		bb->ph[i].bb = bb;
 		bb->ph[i].eating = 0;
 		bb->ph[i].nb_time_eat = 0;
-		bb->ph[i].nb_time_sleep = 0;
-		bb->ph[i].nb_time_think = 0;
+		// bb->ph[i].nb_time_sleep = 0;
+		// bb->ph[i].nb_time_think = 0;
 		bb->ph[i].enough_eat = 0;
+	
 		get_time_in_usec(&bb->ph[i].last_time_eat);
-		if (pthread_mutex_init(&(bb->forks[i]), NULL))
+		if (pthread_mutex_init(&(bb->ph[i].fork), NULL))
+			return (-1);
+		bb->ph[i].right_fork = &bb->ph[(i + 1) % bb->nop].fork;
+		bb->ph[i].left_fork = &bb->ph[i].fork;
+		if (i == bb->nop - 1)
+		{
+			bb->ph[i].right_fork = &bb->ph[i].fork;
+			bb->ph[i].left_fork = &bb->ph[(i + 1) % bb->nop].fork;
+		}
+		if (pthread_mutex_init(&(bb->ph[i].mutex_eating), NULL))
 			return (-1);
 		i++;
 	}

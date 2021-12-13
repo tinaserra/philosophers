@@ -22,7 +22,7 @@ SRC =	main.c \
 NAME = philo
 
 # override -> permet de reecrire la suite de la variable
-override CFLAGS += -Wall -Wextra -Werror -MMD -O3 #-fsanitize=address
+override CFLAGS += -Wall -Wextra -Werror -MMD -g3 #-fsanitize=thread #-fsanitize=address
 LPTHREAD = -lpthread
 
 OBJ_DIR = obj
@@ -42,7 +42,7 @@ all:
 # permet de pouvoir comparer la derniere modification de la dependance 
 # par rapport a la regle
 $(NAME): $(OBJ)
-		@gcc $(CFLAGS) -o $(NAME) $(OBJ) $(LPTHREAD)
+		@cc $(CFLAGS) -o $(NAME) $(OBJ) $(LPTHREAD)
 		@echo $(NAME) : Created !
 
 # si le .c est plus recent que le .o on rentre dans la regle

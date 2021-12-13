@@ -69,10 +69,14 @@ typedef struct	s_philo
 	int				eating;
 	int				enough_eat;
 	int				nb_time_eat;
-	int				nb_time_sleep;
-	int				nb_time_think;
+	// int				nb_time_sleep;
+	// int				nb_time_think;
 	useconds_t		last_time_eat;
 	pthread_t		thread;
+	pthread_mutex_t	mutex_eating;
+	pthread_mutex_t	fork;
+	pthread_mutex_t	*right_fork;
+	pthread_mutex_t	*left_fork;
 
 	struct s_env	*bb;
 }				t_philo;
@@ -94,8 +98,10 @@ typedef struct	s_env
 	pthread_mutex_t	debug;
 	pthread_mutex_t	death;
 	pthread_mutex_t	print;
+	pthread_mutex_t	create;
+	pthread_mutex_t	died;
+	
 	pthread_mutex_t	mutex;
-	pthread_mutex_t	*forks;
 	t_philo			*ph;
 }				t_env;
 

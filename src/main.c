@@ -57,14 +57,15 @@ void	destroy(t_env *bb)
 		i = 0;
 		while (i < bb->nop)
 		{
-			pthread_mutex_destroy(&(bb->forks[i]));
+			pthread_mutex_destroy(&bb->ph[i].mutex_eating);
+			pthread_mutex_destroy(&bb->ph[i].fork);
+			// bb->ph[i].right_fork = NULL;
 			i++;
 		}
-		free(bb->forks);
 		free(bb->ph);
-		pthread_mutex_destroy(&(bb->death));
-		pthread_mutex_destroy(&(bb->mutex));
-		pthread_mutex_destroy(&(bb->print));
+		pthread_mutex_destroy(&bb->death);
+		pthread_mutex_destroy(&bb->mutex);
+		pthread_mutex_destroy(&bb->print);
 	}
 }
 
@@ -85,8 +86,9 @@ int	main(int ac, char **av)
 		destroy(&bb);
 		return (-1);
 	}
-	pthread_mutex_lock(&bb.death);
-	pthread_mutex_unlock(&bb.death);
+	// death(&bb);
+	// pthread_mutex_lock(&bb.death);
+	// pthread_mutex_unlock(&bb.death);
 	usleep(5);
 	destroy(&bb);
 	return (0);
