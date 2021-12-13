@@ -26,25 +26,23 @@ int	ft_strlen(char *s)
 
 void	ft_putchar_fd(char c, int fd)
 {
-	int ret;
+	int ret	__attribute__((unused));
 
 	ret = write(fd, &c, STDOUT_FILENO);
-	(void)ret;
 }
 
 void	ft_putstr_fd(char *s, int fd)
 {
-	int ret;
+	int ret	__attribute__((unused));
 
 	if (fd && s)
 		ret = write(fd, s, ft_strlen(s));
-	(void)ret;
 }
 
 void	ft_bzero(void *s, unsigned int n)
 {
 	unsigned int	i;
-	char	*temp;
+	char			*temp;
 
 	i = 0;
 	temp = (char *)s;
@@ -54,7 +52,6 @@ void	ft_bzero(void *s, unsigned int n)
 		i++;
 	}
 }
-
 
 void	ft_putnbr_fd(int n, int fd)
 {
