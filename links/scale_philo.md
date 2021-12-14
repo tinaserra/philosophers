@@ -15,14 +15,14 @@ et débattre des problèmes que vous avez identifiés.
 * Vérifiez bien qu'aucun alias malveillant n'a été utilisé pour vous tromper et vous faire évaluer autre chose que le contenu du référentiel officiel.
 * Pour éviter toute surprise, vérifiez soigneusement que tant les élèves évaluateurs que les élèves évalués ont revu les scripts possibles utilisés pour faciliter la notation.
 * Si l'étudiant évaluateur n'a pas encore terminé ce projet particulier, il est obligatoire pour cet étudiant de lire l'intégralité du sujet avant de commencer la soutenance.
-* Utiliser les drapeaux disponibles sur cette échelle pour signaler un référentiel vide, un programme non fonctionnel, une erreur de norme, une triche etc. Dans ces cas, la notation est terminée et la note finale est 0 (ou -42 en cas de triche). Cependant, sauf pour tricher, vous êtes
+* Utiliser les flags disponibles sur cette échelle pour signaler un référentiel vide, un programme non fonctionnel, une erreur de norme, une triche etc. Dans ces cas, la notation est terminée et la note finale est 0 (ou -42 en cas de triche). Cependant, sauf pour tricher, vous êtes
 encouragés à continuer à discuter de votre travail (même si vous ne l'avez pas terminé) pour identifier les problèmes qui pourraient avoir causé
 cet échec et éviter de répéter la même erreur à l'avenir.
-* N'oubliez pas que pendant la durée de la soutenance, aucune faute de segmentation, aucune autre interruption imprévue, prématurée, incontrôlée ou inattendue du programme, sinon la note finale est de 0. Utilisez le drapeau approprié.
+* N'oubliez pas que pendant la durée de la soutenance, aucune segmentation fault, aucune autre interruption imprévue, prématurée, incontrôlée ou inattendue du programme, sinon la note finale est de 0. Utilisez le flag approprié.
 Vous ne devriez jamais avoir à modifier un fichier à l'exception du fichier de configuration s'il existe. Si vous souhaitez éditer un fichier, prenez le temps d'expliquer les raisons avec l'étudiant évalué et assurez-vous que vous êtes tous les deux d'accord avec cela.
-* Vous devez également vérifier l'absence de fuites mémoire. Toute mémoire allouée sur le tas doit être correctement libérée avant la fin de l'exécution.
+* Vous devez également vérifier **l'absence de fuites mémoire**. Toute mémoire allouée sur le tas doit être correctement libérée avant la fin de l'exécution.
 Vous êtes autorisé à utiliser l'un des différents outils disponibles sur l'ordinateur, tels que
-fuites, valgrind ou e_fence. En cas de fuite de mémoire, cochez le drapeau approprié.
+leaks, valgrind ou e_fence. En cas de fuite de mémoire, cochez le flag approprié.
 
 ## Partie obligatoire
 La gestion des erreurs
@@ -39,8 +39,8 @@ Vérifiez le code de Philo pour les choses suivantes et demandez une explication
 - [ ] Vérifiez que la sortie ne doit jamais produire une vue brouillée.
 - [ ] Vérifier comment la mort d'un philosophe est vérifiée et s'il y a un **mutex** pour protéger qu'un philosophe meurt et commence à manger en même temps.
 
-## Test de philosophie
-- [ ] Ne pas tester avec plus de 200 philosophes
+## Test philo
+- [ ] Ne pas tester avec plus de **200 philosophes**
 - [ ] Ne pas tester avec ```time_to_die``` ou ```time_to_eat``` ou ```time_to_sleep``` sous **60 ms**
 - [ ] Testez au ```1 800 200 200```, le philosophe ne doit pas manger et doit mourir !
 - [ ] Test avec ```5 800 200 200```, personne ne doit mourir !
