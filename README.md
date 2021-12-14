@@ -15,6 +15,7 @@ make && ./philo 4 310 200 200
 ## 1. Sujet
 
 * [Sujet 42](https://cdn.intra.42.fr/pdf/pdf/34923/en.subject.pdf)
+* Scale de correction -> [EN](https://github.com/tinaserra/philosophers/blob/main/links/scale_philo.pdf) | [FR](https://github.com/tinaserra/philosophers/blob/main/links/scale_philo.md)
 
 ### Description
 * Chaque philosophe est un **thread**, et chaque fourchette est un **mutex**
