@@ -12,23 +12,33 @@
 
 #include "philo.h"
 
-void	justeat(t_philo *ph)
-{
-	/* prendre les deux fourchettes */
-	pthread_mutex_lock(ph->left_fork);
-	print_message(ph, FORK_L);
+/*
+** if 1 seul philo justone(ph);
+*/
 
-	// if 1 seul philo justone(ph);
+static void	justone(t_philo *ph)
+{
 	if (ph->bb->nop == 1)
 	{
 		ft_usleep(ph->bb->time_to_die, ph->bb);
 		pthread_mutex_unlock(ph->left_fork);
-		return ; 
+		return ;
 	}
 	pthread_mutex_lock(ph->right_fork);
 	print_message(ph, FORK_R);
+}
 
-	/* manger pendant time_to_eat */
+/*
+** prendre les deux fourchettes
+** manger pendant time_to_eat
+** lacher les deux fourchettes
+*/
+
+static void	justeat(t_philo *ph)
+{
+	pthread_mutex_lock(ph->left_fork);
+	print_message(ph, FORK_L);
+	justone(ph);
 	print_message(ph, EATING);
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->eating = 1;
@@ -38,15 +48,11 @@ void	justeat(t_philo *ph)
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->nb_time_eat++;
 	pthread_mutex_unlock(&ph->mutex_eating);
-
-	/* lacher les deux fourchettes */
 	pthread_mutex_unlock(ph->left_fork);
 	pthread_mutex_unlock(ph->right_fork);
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->eating = 0;
 	pthread_mutex_unlock(&ph->mutex_eating);
-	print_message(ph, SLEEPING);
-	ft_usleep(ph->bb->time_to_sleep, ph->bb);
 }
 
 void	*justdoit(void *data)
@@ -61,11 +67,11 @@ void	*justdoit(void *data)
 	while (1)
 	{
 		justeat(ph);
+		print_message(ph, SLEEPING);
+		ft_usleep(ph->bb->time_to_sleep, ph->bb);
 		print_message(ph, THINKING);
 		if (ph->bb->philo_died)
 			return (0);
 	}
 	return (0);
 }
-
-

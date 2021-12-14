@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 18:33:50 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/07 22:38:59 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/14 16:37:20 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	print_message(t_philo *ph, int msg)
 {
-	useconds_t time;
+	useconds_t	time;
 
 	pthread_mutex_lock(&ph->bb->print);
 	pthread_mutex_lock(&ph->bb->died);
@@ -27,9 +27,8 @@ int	print_message(t_philo *ph, int msg)
 		return (0);
 	}
 	get_time_in_usec(&time);
-
-	printf("%d %d%s", (time - ph->bb->start_time) / 1000, ph->num + 1, g_str_msg[msg]);
-
+	printf("%d %d%s", (time - ph->bb->start_time) / 1000,
+		ph->num + 1, g_str_msg[msg]);
 	pthread_mutex_unlock(&ph->bb->died);
 	pthread_mutex_unlock(&ph->bb->print);
 	return (0);

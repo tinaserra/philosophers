@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/07 22:31:39 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/14 16:36:18 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// int		g_time_now;
 
 /*
 ** int gettimeofday(struct timeval *tv, struct timezone *tz);
@@ -56,7 +54,6 @@ int	ft_usleep(useconds_t time_in_usec, t_env *bb)
 		}
 		pthread_mutex_unlock(&bb->died);
 		usleep(100);
-
 	}
 	return (0);
 }

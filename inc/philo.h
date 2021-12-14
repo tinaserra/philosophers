@@ -53,6 +53,7 @@ typedef enum		e_error{
 	ARG4,
 	ARG5,
 	MALLOC,
+	INIT_FORKS,
 	INIT_MUTEX,
 	GETTIMEOFDAY,
 
