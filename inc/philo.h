@@ -138,7 +138,8 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_bzero(void *s, unsigned int n);
 void	ft_putnbr_fd(int n, int fd);
-int		get_time_in_usec(useconds_t *actual_time);
+
+useconds_t	get_time_in_usec(useconds_t *actual_time);
 int		ft_usleep(useconds_t time_in_ms, t_env *bb);
 
 #endif

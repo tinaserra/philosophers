@@ -41,6 +41,12 @@ make && ./philo 4 310 200 200
 
 * la fonction ```pthread_exit``` n'est pas autorisé pour le projet de 42 tu peux mettre tout simplement un ```return ;```
 
+## 4. Tests, leaks & data race
+
+### Tests
+
+- 1 402 200 200
+
 ## 2. Qu'est-ce qu'un thread ?
 
 les thread sont des programmes qui vont demarrer au sein d'un premier et qui vont se separer pour accomplir des taches / effectuer leurs instructions simultanement / en meme temps, sans forcement etre lies sauf en terme de memoire. c'est de la programmation dite asynchrone.

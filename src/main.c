@@ -20,7 +20,7 @@
 ** l'argument timezone doit etre NULL.
 */
 
-int	get_time_in_usec(useconds_t *actual_time)
+useconds_t	get_time_in_usec(useconds_t *actual_time)
 {
 	static struct timeval	current_time;
 
@@ -42,8 +42,7 @@ int	ft_usleep(useconds_t time_in_usec, t_env *bb)
 
 	start_time = 0;
 	actual_time = 0;
-	if (get_time_in_usec(&start_time) == -1)
-		return (print_error(GETTIMEOFDAY));
+
 	while ((get_time_in_usec(&actual_time) - start_time) < time_in_usec)
 	{
 		pthread_mutex_lock(&bb->died);
@@ -60,21 +59,21 @@ int	ft_usleep(useconds_t time_in_usec, t_env *bb)
 
 void	destroy(t_env *bb)
 {
-	int	i;
+	// int	i;
 
 	if (bb->ph && bb->nop > 0)
 	{
-		i = 0;
-		while (i < bb->nop)
-		{
-			pthread_mutex_destroy(&bb->ph[i].mutex_eating);
-			pthread_mutex_destroy(&bb->ph[i].fork);
-			i++;
-		}
+		// i = 0;
+		// while (i < bb->nop)
+		// {
+		// 	pthread_mutex_destroy(&bb->ph[i].mutex_eating);
+		// 	pthread_mutex_destroy(&bb->ph[i].fork);
+		// 	i++;
+		// }
 		free(bb->ph);
-		pthread_mutex_destroy(&bb->death);
-		pthread_mutex_destroy(&bb->mutex);
-		pthread_mutex_destroy(&bb->print);
+		// pthread_mutex_destroy(&bb->death);
+		// pthread_mutex_destroy(&bb->mutex);
+		// pthread_mutex_destroy(&bb->print);
 	}
 }
 

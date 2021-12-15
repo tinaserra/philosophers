@@ -42,7 +42,7 @@ Vérifiez le code de Philo pour les choses suivantes et demandez une explication
 ## Test philo
 - [ ] Ne pas tester avec plus de **200 philosophes**
 - [ ] Ne pas tester avec ```time_to_die``` ou ```time_to_eat``` ou ```time_to_sleep``` sous **60 ms**
-- [ ] Testez au ```1 800 200 200```, le philosophe ne doit pas manger et doit mourir !
+- [x] Testez au ```1 800 200 200```, le philosophe ne doit pas manger et doit mourir !
 - [ ] Test avec ```5 800 200 200```, personne ne doit mourir !
 - [ ] Test avec ```5 800 200 200 7```, personne ne doit mourir et la simulation doit s'arrêter lorsque tous les philosophes ont mangé au moins 7 fois chacun.
 - [ ] Test avec ```4 410 200 200```, personne ne doit mourir !
