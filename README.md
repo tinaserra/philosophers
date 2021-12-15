@@ -264,9 +264,3 @@ ao !
 end1
 ```
 sans les mutex les threads s'executent en meme temps
-
-#### attention a printf !
-
-dans l'exemple d'avant j'utilise ```fprintf```.</br>
-si tu utisile la fonction ```printf``` tu peux avoir l'impression que tout fonctionne correctement **sans les mutex**.</br>
-je pense que c'est du au fait que ```printf``` ecrit la string dans un buffer avant de la print. donc tu ne verra pas les caracteres de la string dans le desordre meme si tu n'utilise pas les mutex dans ton code.</br>
