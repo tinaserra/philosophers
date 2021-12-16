@@ -6,7 +6,7 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:42:05 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/16 22:48:20 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/16 23:20:03 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void	justeat(t_philo *ph)
 {
 	pthread_mutex_lock(ph->left_fork);
 	print_message(ph, FORK_L);
+	// justone(ph);
 	if (justone(ph) == -1)
 		return ;
 	print_message(ph, EATING);
