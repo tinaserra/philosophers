@@ -6,7 +6,7 @@
 /*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:42:05 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/07 22:46:10 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/16 22:48:20 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,17 @@
 ** if 1 seul philo justone(ph);
 */
 
-static void	justone(t_philo *ph)
+static int	justone(t_philo *ph)
 {
 	if (ph->bb->nop == 1)
 	{
 		ft_usleep(ph->bb->time_to_die, ph->bb);
 		pthread_mutex_unlock(ph->left_fork);
-		return ;
+		return (-1);
 	}
 	pthread_mutex_lock(ph->right_fork);
 	print_message(ph, FORK_R);
+	return (0);
 }
 
 /*
@@ -38,7 +39,8 @@ static void	justeat(t_philo *ph)
 {
 	pthread_mutex_lock(ph->left_fork);
 	print_message(ph, FORK_L);
-	justone(ph);
+	if (justone(ph) == -1)
+		return ;
 	print_message(ph, EATING);
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->eating = 1;
@@ -53,6 +55,8 @@ static void	justeat(t_philo *ph)
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->eating = 0;
 	pthread_mutex_unlock(&ph->mutex_eating);
+	print_message(ph, SLEEPING);
+	ft_usleep(ph->bb->time_to_sleep, ph->bb);
 }
 
 void	*justdoit(void *data)
@@ -67,11 +71,14 @@ void	*justdoit(void *data)
 	while (1)
 	{
 		justeat(ph);
-		print_message(ph, SLEEPING);
-		ft_usleep(ph->bb->time_to_sleep, ph->bb);
 		print_message(ph, THINKING);
+		pthread_mutex_lock(&ph->bb->died);
 		if (ph->bb->philo_died)
+		{
+			pthread_mutex_unlock(&ph->bb->died);
 			return (0);
+		}
+		pthread_mutex_unlock(&ph->bb->died);
 	}
 	return (0);
 }
