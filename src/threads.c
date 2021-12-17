@@ -44,6 +44,7 @@ static int	check_eat(t_env *bb, int *i)
 	tmp_last_time_eat = bb->ph[*i].last_time_eat;
 	tmp_nb_time_eat = bb->ph[*i].nb_time_eat;
 	pthread_mutex_unlock(&bb->ph[*i].mutex_eating);
+
 	// if (check_death(bb, i, tmp_eating, tmp_last_time_eat) == -1)
 	// 	return (-1);
 
