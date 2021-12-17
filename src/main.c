@@ -20,7 +20,7 @@
 ** l'argument timezone doit etre NULL.
 */
 
-useconds_t	get_time_in_usec(useconds_t *actual_time)
+int	get_time_in_usec(useconds_t *actual_time)
 {
 	static struct timeval	current_time;
 

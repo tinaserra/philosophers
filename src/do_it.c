@@ -44,7 +44,7 @@ static void	justeat(t_philo *ph)
 		return ;
 	print_message(ph, EATING);
 	pthread_mutex_lock(&ph->mutex_eating);
-	print_message(ph, EATING);
+	// print_message(ph, EATING);
 	ph->eating = 1;
 	get_time_in_usec(&ph->last_time_eat);
 	pthread_mutex_unlock(&ph->mutex_eating);
