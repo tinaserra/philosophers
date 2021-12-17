@@ -48,7 +48,7 @@ $(NAME): $(OBJ)
 # si le .c est plus recent que le .o on rentre dans la regle
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | .gitignore
 		@mkdir -p $(OBJ_DIR)
-		@gcc $(CFLAGS) -I $(INC_DIR) -c $< -o $@
+		@cc $(CFLAGS) -I $(INC_DIR) -c $< -o $@
 
 .gitignore:
 		@echo $(NAME) > .gitignore

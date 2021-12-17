@@ -29,21 +29,21 @@ static int	init_mutex(t_env *bb)
 	return (0);
 }
 
-static int	init_forks(t_env *bb, int i)
-{
-	if (pthread_mutex_init(&(bb->ph[i].fork), NULL))
-		return (-1);
-	bb->ph[i].right_fork = &bb->ph[(i + 1) % bb->nop].fork;
-	bb->ph[i].left_fork = &bb->ph[i].fork;
-	if (i == bb->nop - 1)
-	{
-		bb->ph[i].right_fork = &bb->ph[i].fork;
-		bb->ph[i].left_fork = &bb->ph[(i + 1) % bb->nop].fork;
-	}
-	if (pthread_mutex_init(&(bb->ph[i].mutex_eating), NULL))
-		return (-1);
-	return (0);
-}
+// static int	init_forks(t_env *bb, int i)
+// {
+// 	if (pthread_mutex_init(&(bb->ph[i].fork), NULL))
+// 		return (-1);
+// 	bb->ph[i].right_fork = &bb->ph[(i + 1) % bb->nop].fork;
+// 	bb->ph[i].left_fork = &bb->ph[i].fork;
+// 	if (i == bb->nop - 1)
+// 	{
+// 		bb->ph[i].right_fork = &bb->ph[i].fork;
+// 		bb->ph[i].left_fork = &bb->ph[(i + 1) % bb->nop].fork;
+// 	}
+// 	if (pthread_mutex_init(&(bb->ph[i].mutex_eating), NULL))
+// 		return (-1);
+// 	return (0);
+// }
 
 static int	init_struct(t_env *bb)
 {
@@ -61,8 +61,20 @@ static int	init_struct(t_env *bb)
 		bb->ph[i].nb_time_eat = 0;
 		bb->ph[i].enough_eat = 0;
 		get_time_in_usec(&bb->ph[i].last_time_eat);
-		if (init_forks(bb, i) == -1)
-			return (print_error(INIT_FORKS));
+		// if (init_forks(bb, i) == -1)
+		// 	return (print_error(INIT_FORKS));
+
+		if (pthread_mutex_init(&(bb->ph[i].fork), NULL))
+			return (-1);
+		bb->ph[i].right_fork = &bb->ph[(i + 1) % bb->nop].fork;
+		bb->ph[i].left_fork = &bb->ph[i].fork;
+		if (i == bb->nop - 1)
+		{
+			bb->ph[i].right_fork = &bb->ph[i].fork;
+			bb->ph[i].left_fork = &bb->ph[(i + 1) % bb->nop].fork;
+		}
+		if (pthread_mutex_init(&(bb->ph[i].mutex_eating), NULL))
+			return (-1);
 		i++;
 	}
 	return (0);
