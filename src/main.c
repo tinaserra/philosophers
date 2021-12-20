@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/16 22:50:48 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/20 16:28:33 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ long int	get_time_in_usec(useconds_t *actual_time)
 {
 	static struct timeval	current_time;
 
-	// gettimeofday(&current_time, NULL);
 	if (gettimeofday(&current_time, NULL) == -1)
 		return (print_error(GETTIMEOFDAY));
 	*actual_time = ((current_time.tv_sec * 1000000) + (current_time.tv_usec));
@@ -43,9 +42,8 @@ int	ft_usleep(useconds_t time_in_usec, t_env *bb)
 
 	start_time = 0;
 	actual_time = 0;
-	// if (get_time_in_usec(&start_time) == -1)
-	// 	return (print_error(GETTIMEOFDAY));
-	get_time_in_usec(&start_time);
+	if (get_time_in_usec(&start_time) == -1)
+		return (-1);
 	while ((get_time_in_usec(&actual_time) - start_time) < time_in_usec)
 	{
 		pthread_mutex_lock(&bb->died);

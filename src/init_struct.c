@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_struct.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 14:26:31 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/07 22:37:00 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/20 15:36:34 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,17 +68,25 @@ static int	init_struct(t_env *bb)
 			return (-1);
 		bb->ph[i].right_fork = &bb->ph[(i + 1) % bb->nop].fork;
 		bb->ph[i].left_fork = &bb->ph[i].fork;
-		if (i == bb->nop - 1)
-		{
-			bb->ph[i].right_fork = &bb->ph[i].fork;
-			bb->ph[i].left_fork = &bb->ph[(i + 1) % bb->nop].fork;
-		}
+		// if (i == bb->nop - 1)
+		// {
+		// 	bb->ph[i].right_fork = &bb->ph[i].fork;
+		// 	bb->ph[i].left_fork = &bb->ph[(i + 1) % bb->nop].fork;
+		// }
 		if (pthread_mutex_init(&(bb->ph[i].mutex_eating), NULL))
 			return (-1);
 		i++;
 	}
 	return (0);
 }
+
+/*
+p1 fL
+p2 fL 
+p3 fL
+p4 fL
+p5 fL
+*/
 
 static int	init_args(t_env *bb, int ac, char **av)
 {

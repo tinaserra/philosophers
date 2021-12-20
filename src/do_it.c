@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_it.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
+/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:42:05 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/16 23:20:03 by tinaserra        ###   ########.fr       */
+/*   Updated: 2021/12/20 15:06:07 by vserra           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ static void	justeat(t_philo *ph)
 	// justone(ph);
 	if (justone(ph) == -1)
 		return ;
-	// print_message(ph, EATING); // ici ne marche pas pour ./philo 5 800 200 200
+	print_message(ph, EATING); // je sais pas
 	pthread_mutex_lock(&ph->mutex_eating);
-	print_message(ph, EATING);
+	// print_message(ph, EATING);
 	ph->eating = 1;
 	get_time_in_usec(&ph->last_time_eat);
 	pthread_mutex_unlock(&ph->mutex_eating);
