@@ -21,10 +21,6 @@ static int	justone(t_philo *ph)
 	if (ph->bb->nop == 1)
 	{
 		ft_usleep(ph->bb->time_to_die, ph->bb);
-		// pthread_mutex_lock(&ph->bb->died);
-		// ph->bb->philo_died = 1;
-		// print_message(ph, DIED);
-		// pthread_mutex_unlock(&ph->bb->died);
 		pthread_mutex_unlock(ph->left_fork);
 		return (-1);
 	}
@@ -43,10 +39,9 @@ static void	justeat(t_philo *ph)
 {
 	pthread_mutex_lock(ph->left_fork);
 	print_message(ph, FORK_L);
-	// justone(ph);
 	if (justone(ph) == -1)
 		return ;
-	print_message(ph, EATING); // je sais pas
+	print_message(ph, EATING);
 	pthread_mutex_lock(&ph->mutex_eating);
 	// print_message(ph, EATING);
 	ph->eating = 1;
@@ -56,8 +51,8 @@ static void	justeat(t_philo *ph)
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->nb_time_eat++;
 	pthread_mutex_unlock(&ph->mutex_eating);
-	pthread_mutex_unlock(ph->left_fork);
 	pthread_mutex_unlock(ph->right_fork);
+	pthread_mutex_unlock(ph->left_fork);
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->eating = 0;
 	pthread_mutex_unlock(&ph->mutex_eating);

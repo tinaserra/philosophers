@@ -29,8 +29,8 @@ int	print_message(t_philo *ph, int msg)
 	get_time_in_usec(&time);
 	printf("%d %d%s", (time - ph->bb->start_time) / 1000,
 		ph->num + 1, g_str_msg[msg]);
-	pthread_mutex_unlock(&ph->bb->died);
 	pthread_mutex_unlock(&ph->bb->print);
+	pthread_mutex_unlock(&ph->bb->died);
 	return (0);
 }
 

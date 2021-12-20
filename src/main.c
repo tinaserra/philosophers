@@ -60,21 +60,21 @@ int	ft_usleep(useconds_t time_in_usec, t_env *bb)
 
 void	destroy(t_env *bb)
 {
-	int	i;
+	// int	i;
 
 	if (bb->ph && bb->nop > 0)
 	{
-		i = 0;
-		while (i < bb->nop)
-		{
-			pthread_mutex_destroy(&bb->ph[i].mutex_eating);
-			pthread_mutex_destroy(&bb->ph[i].fork);
-			i++;
-		}
+		// i = 0;
+		// while (i < bb->nop)
+		// {
+		// 	pthread_mutex_destroy(&bb->ph[i].mutex_eating);
+		// 	pthread_mutex_destroy(&bb->ph[i].fork);
+		// 	i++;
+		// }
 		free(bb->ph);
-		pthread_mutex_destroy(&bb->death);
-		pthread_mutex_destroy(&bb->mutex);
-		pthread_mutex_destroy(&bb->print);
+		// pthread_mutex_destroy(&bb->death);
+		// pthread_mutex_destroy(&bb->mutex);
+		// pthread_mutex_destroy(&bb->print);
 	}
 }
 

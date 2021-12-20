@@ -16,11 +16,11 @@
 static char g_str_error[NUMBER][256] =
 {
 	[ARGS] = "Error\nInvalid number of arguments\n",
-	[ARG1] = "Error\nInvalid [nop]\n",
+	[ARG1] = "Error\nInvalid [number_of_philosophers]\n",
 	[ARG2] = "Error\nInvalid [time_to_die]\n",
 	[ARG3] = "Error\nInvalid [time_to_eat]\n",
 	[ARG4] = "Error\nInvalid [time_to_sleep]\n",
-	[ARG5] = "Error\nInvalid [notep_must_eat]\n",
+	[ARG5] = "Error\nInvalid [number_of_time_each_philosophers_must_eat]\n",
 	[MALLOC] = "Error\nMemory allocation failed\n",
 	[INIT_FORKS] = "Error\nInit forks",
 	[INIT_MUTEX] = "Error\nInit mutex\n",
