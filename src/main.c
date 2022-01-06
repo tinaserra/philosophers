@@ -87,7 +87,6 @@ int	main(int ac, char **av)
 	if (init_start(&bb, ac, av) == -1)
 	{
 		destroy(&bb);
-		debug_print_args(&bb);
 		return (-1);
 	}
 	if (create_philosophers(&bb) == -1)

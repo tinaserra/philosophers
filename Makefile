@@ -14,7 +14,6 @@ SRC =	main.c \
 		init_struct.c \
 		init_utils.c \
 		do_it.c \
-		debug.c \
 		print.c \
 		threads.c \
 		utils.c

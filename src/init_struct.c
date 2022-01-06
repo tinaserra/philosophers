@@ -22,8 +22,6 @@ static int	init_mutex(t_env *bb)
 		return (-1);
 	if (pthread_mutex_init(&(bb->death), NULL))
 		return (-1);
-	if (pthread_mutex_init(&(bb->debug), NULL))
-		return (-1);
 	if (pthread_mutex_init(&(bb->died), NULL))
 		return (-1);
 	return (0);
@@ -94,8 +92,6 @@ static int	init_args(t_env *bb, int ac, char **av)
 		if (nbr_atoi(av[5], &bb->notep_must_eat) == -1 || bb->notep_must_eat == 0)
 			return (print_error(ARG5));
 	get_time_in_usec(&bb->start_time);
-	debug_print_args(bb);
-	debug_print_struct(bb);
 	return (0);
 }
 

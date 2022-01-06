@@ -95,7 +95,6 @@ typedef struct	s_env
 	useconds_t		start_time;
 
 	/* threads & mutex */
-	pthread_mutex_t	debug;
 	pthread_mutex_t	death;
 	pthread_mutex_t	print;
 	pthread_mutex_t	create;
@@ -127,10 +126,6 @@ int	create_philosophers(t_env *bb);
 
 /* states.c */
 void	*justdoit(void *data);
-
-/* debug.c */
-void	debug_print_args(t_env *bb);
-void	debug_print_struct(t_env *bb);
 
 /* utils.c */
 int		ft_strlen(char *s);

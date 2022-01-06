@@ -41,9 +41,9 @@ static void	justeat(t_philo *ph)
 	print_message(ph, FORK_L);
 	if (justone(ph) == -1)
 		return ;
-	print_message(ph, EATING);
-	pthread_mutex_lock(&ph->mutex_eating);
 	// print_message(ph, EATING);
+	pthread_mutex_lock(&ph->mutex_eating);
+	print_message(ph, EATING);
 	ph->eating = 1;
 	get_time_in_usec(&ph->last_time_eat);
 	pthread_mutex_unlock(&ph->mutex_eating);
