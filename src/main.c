@@ -30,6 +30,18 @@ long int	get_time_in_usec(useconds_t *actual_time)
 	return (*actual_time);
 }
 
+long int	get_time_in_usec_to_print(useconds_t start_time)
+{
+	static struct timeval	current_time;
+	useconds_t				actual_time;
+
+	if (gettimeofday(&current_time, NULL) == -1)
+		return (print_error(GETTIMEOFDAY));
+	actual_time = ((current_time.tv_sec * 1000000) + (current_time.tv_usec));
+	actual_time -= start_time;
+	return (actual_time);
+}
+
 /*
 ** la vraie fonction usleep attend au minimum le temps qu'on lui indique
 ** donc n'est pas precise

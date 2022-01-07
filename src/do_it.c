@@ -69,7 +69,7 @@ void	*justdoit(void *data)
 	pthread_mutex_unlock(&ph->bb->create);
 	if (ph->num % 2)
 		ft_usleep(ph->bb->time_to_eat, ph->bb);
-	while (1)
+	while (!ph->bb->philo_died)
 	{
 		justeat(ph);
 		print_message(ph, THINKING);

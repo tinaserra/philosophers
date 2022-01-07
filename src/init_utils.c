@@ -38,6 +38,8 @@ int	time_atoi(const char *str, useconds_t *time)
 	return (0);
 }
 
+// checker over flow pour time to sleep
+
 int	nbr_atoi(const char *str, int *arg)
 {
 	int	i;

@@ -110,7 +110,7 @@ int	create_philosophers(t_env *bb)
 		i++;
 	}
 	i = 0;
-	death(bb);
+	death(bb); // ./philo 200 122 60 60 PB!
 	while (i < bb->nop)
 	{
 		pthread_join(bb->ph[i].thread, NULL);
