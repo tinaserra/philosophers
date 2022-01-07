@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/25 12:11:20 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/20 16:28:33 by vserra           ###   ########.fr       */
+/*   Updated: 2022/01/07 09:39:27 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	ft_usleep(useconds_t time_in_usec, t_env *bb)
 			break ;
 		}
 		pthread_mutex_unlock(&bb->died);
-		usleep(100);
+		usleep(500);
 	}
 	return (0);
 }

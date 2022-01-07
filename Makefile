@@ -6,7 +6,7 @@
 #    By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/25 12:04:40 by vserra            #+#    #+#              #
-#    Updated: 2021/12/16 23:20:22 by tinaserra        ###   ########.fr        #
+#    Updated: 2022/01/07 09:18:04 by tinaserra        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ SRC =	main.c \
 NAME = philo
 
 # override -> permet de reecrire la suite de la variable
-override CFLAGS += -Wall -Wextra -Werror -MMD -O3 -fsanitize=address
+override CFLAGS += -Wall -Wextra -Werror -MMD -O3 #-fsanitize=address
 LPTHREAD = -lpthread
 
 OBJ_DIR = obj

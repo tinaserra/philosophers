@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   do_it.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vserra <vserra@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tinaserra <tinaserra@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/02 17:42:05 by vserra            #+#    #+#             */
-/*   Updated: 2021/12/20 15:06:07 by vserra           ###   ########.fr       */
+/*   Updated: 2022/01/07 09:26:32 by tinaserra        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ static void	justeat(t_philo *ph)
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->nb_time_eat++;
 	pthread_mutex_unlock(&ph->mutex_eating);
-	pthread_mutex_unlock(ph->right_fork);
 	pthread_mutex_unlock(ph->left_fork);
+	pthread_mutex_unlock(ph->right_fork);
 	pthread_mutex_lock(&ph->mutex_eating);
 	ph->eating = 0;
 	pthread_mutex_unlock(&ph->mutex_eating);
